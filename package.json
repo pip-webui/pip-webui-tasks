@@ -1,0 +1,29 @@
+{
+  "name": "pip-webui-tasks",
+  "version": "1.0.0",
+  "author": "Digital Living Software Corp. <www.digitallivingsoftware.com>",
+  "description": "Build tasks for Pip.WebUI projects",
+  "contributors": [
+    {
+      "name": "Sergey Seroukhov",
+      "email": "seroukhov@gmail.com"
+    }
+  ],
+  "main": "./src/index.js",
+  "keywords": [
+    "pip",
+    "webui",
+    "build",
+    "tasks"
+  ],
+  "noAnalyze": true,
+  "license": "Commercial",
+  "private": true,
+  "dependencies": {
+    "lodash.defaultsdeep": ">=4.x",
+    "merge2": "*",
+    "event-stream": "3.3.2",
+    "concurrent-transform": "*",
+    "del": "*"
+  }
+}
