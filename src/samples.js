@@ -14,10 +14,10 @@ var defaultConfig = require('./default_config');
 var buildConfig = require(process.cwd() + '/build.conf.js');
 var conf = _defaultsDeep(buildConfig, defaultConfig);
 
-module.exports = function() {
+module.exports = function () {
 
-    gulp.task('samples-publish', function() {
-        var 
+    gulp.task('samples-publish', function () {
+        var
             publisher = awspublish.create({
                 params: {
                     Bucket: conf.samples.publish.bucket
@@ -26,15 +26,15 @@ module.exports = function() {
                 secretAccessKey: conf.samples.publish.secretAccessKey,
                 region: conf.samples.publish.region
             }),
-            
+
             distFiles = gulp.src([
-                    conf.dir.lib + '/**/*',
-                    conf.dir.dist + '/**/*',
-                ], { xbase: '.' }),
+                conf.dir.lib + '/**/*',
+                conf.dir.dist + '/**/*',
+            ], {xbase: '.'}),
 
             indexFiles = gulp.src([
                     conf.dir.samples + '**/index.*'
-                ], { xbase: '.' })
+                ], {xbase: '.'})
                 .pipe(replace(pkg.name + '-lib.css', pkg.name + '-lib.min.css'))
                 .pipe(replace(pkg.name + '-lib.js', pkg.name + '-lib.min.js'))
                 .pipe(replace(pkg.name + '.css', pkg.name + '.min.css'))
@@ -45,22 +45,22 @@ module.exports = function() {
                 .pipe(replace('../../.' + conf.dir.dist, '/' + pkg.name + '/'))
                 .pipe(replace('../.' + conf.dir.dist, '/' + pkg.name + '/'))
                 .pipe(replace('.' + conf.dir.dist, '/' + pkg.name + '/')),
-                
+
             sampleFiles = gulp.src([
-                    conf.dir.samples + '**/*',
-                    '!' + conf.dir.samples + '**/index.*'
-                ], { xbase: '.' });
-                
+                conf.dir.samples + '**/*',
+                '!' + conf.dir.samples + '**/index.*'
+            ], {xbase: '.'});
+
         return es.merge([distFiles, indexFiles, sampleFiles])
-            .pipe(rename(function(path) {
-                path.dirname = '/' + pkg.name + '/'+ path.dirname
+            .pipe(rename(function (path) {
+                path.dirname = '/' + pkg.name + '/' + path.dirname
             }))
             .pipe(parallelize(publisher.publish(), 5))
             .pipe(publisher.sync(pkg.name))
             .pipe(awspublish.reporter());
     });
 
-    gulp.task('samples-launch', function() {
+    gulp.task('samples-launch', function () {
         gulp.src(['.'])
             .pipe(webserver({
                 port: conf.samples.port,
@@ -69,5 +69,4 @@ module.exports = function() {
                 open: 'http://localhost:' + conf.samples.port + '/' + conf.dir.samples + 'index.html'
             }));
     });
-    
 };
