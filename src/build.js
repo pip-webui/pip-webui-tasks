@@ -11,6 +11,7 @@ var ngAnnotate = require('gulp-ng-annotate');
 var sourceMaps = require('gulp-sourcemaps');
 var ngHtml2Js = require('gulp-ng-html2js');
 var addsrc = require('gulp-add-src');
+var ngdocs = require('gulp-ngdocs');
 var del = require('del');
 var merge = require('merge2');
 
@@ -151,11 +152,23 @@ module.exports = function () {
             .pipe(gulp.dest(conf.dir.samples));
     });
 
+    gulp.task('generate-docs', function () {
+        var options = {
+            title: 'API Reference',
+            html5Mode: true
+        };
+
+        return gulp.src('./src/**/*.js')
+            .pipe(ngdocs.process(options))
+            .pipe(gulp.dest('./docs/api'));
+    });
+
+
     gulp.task('build-res-dev', ['copy-images']);
     gulp.task('build-res-prod', ['copy-images']);
 
-    gulp.task('build-dev', ['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev']);
-    gulp.task('build-prod', ['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod']);
+    gulp.task('build-dev', ['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'generate-docs']);
+    gulp.task('build-prod', ['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'generate-docs']);
 
 
     gulp.task('build-clean', function () {
