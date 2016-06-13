@@ -160,7 +160,7 @@ module.exports = function () {
 
         return gulp.src('./src/**/*.js')
             .pipe(ngdocs.process(options))
-            .pipe(gulp.dest('./docs/api'));
+            .pipe(gulp.dest('./doc/api'));
     });
 
 
