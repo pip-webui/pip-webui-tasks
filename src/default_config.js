@@ -11,7 +11,8 @@ module.exports = {
         import: './node_modules/',
         lib: './lib/',
         dist: './dist/',
-        samples: './samples/'
+        samples: './samples/',
+        cordova: './cordova/www'
     },
     file: {
         import: [
