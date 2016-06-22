@@ -15,6 +15,7 @@ var ngdocs = require('gulp-ngdocs');
 var del = require('del');
 var merge = require('merge2');
 var eslint = require('gulp-eslint');
+var runSequence = require('run-sequence');
 
 var pkg = require(process.cwd() + '/package.json');
 
@@ -168,10 +169,6 @@ module.exports = function () {
         return gulp.src('./src/**/*.js')
             .pipe(eslint())
             .pipe(eslint.format())
-            .pipe(eslint.result(function (result) {
-                console.log('Lint file: ' + result.filePath
-                    + (result.errorCount === 0 ? ' no errors!' : ' details: ' + result.messages));
-            }))
             .pipe(eslint.failAfterError());
     });
 
@@ -180,11 +177,19 @@ module.exports = function () {
             .pipe(gulp.dest(conf.dir.cordova));
     });
 
-    gulp.task('build-res-dev', ['lint', 'copy-images']);
+    gulp.task('build-res-dev', ['copy-images']);
     gulp.task('build-res-prod', ['copy-images']);
 
-    gulp.task('build-dev', ['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'generate-docs']);
-    gulp.task('build-prod', ['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'generate-docs']);
+    gulp.task('build-dev', function (callback) {
+        runSequence('lint',
+            ['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'generate-docs'],
+            callback);
+    });
+    gulp.task('build-prod', function (callback) {
+        runSequence('lint',
+            ['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'generate-docs'],
+            callback);
+    });
 
 
     gulp.task('build-clean', function () {
