@@ -169,11 +169,12 @@ module.exports = function () {
 
     gulp.task('js-lint', function () {
         return gulp.src('./src/**/*.js')
-            .pipe(eslint(process.cwd() + '/node_modules/pip-webui-tasks/config/.eslint'))
+            .pipe(eslint('node_modules/pip-webui-tasks/config/.eslint'))
             .pipe(eslint.format())
             .pipe(eslint.failAfterError());
     });
 
+    // TODO [apidhirnyi] Add process breaking on less styles error
     gulp.task('less-lint', function () {
         return gulp.src('./src/**/*.less')
             .pipe(lesshint({
