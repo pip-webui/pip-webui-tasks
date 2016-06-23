@@ -12,5 +12,5 @@ module.exports = {
     build: build,
     samples: samples,
     publish: publish,
-    all: all    
+    all: all
 };

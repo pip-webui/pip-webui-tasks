@@ -16,6 +16,8 @@ var del = require('del');
 var merge = require('merge2');
 var eslint = require('gulp-eslint');
 var runSequence = require('run-sequence');
+var lesshint = require('gulp-lesshint');
+var Server = require('karma').Server;
 
 var pkg = require(process.cwd() + '/package.json');
 
@@ -165,11 +167,26 @@ module.exports = function () {
             .pipe(gulp.dest('./doc/api'));
     });
 
-    gulp.task('lint', function() {
+    gulp.task('js-lint', function () {
         return gulp.src('./src/**/*.js')
-            .pipe(eslint())
+            .pipe(eslint(process.cwd() + '/node_modules/pip-webui-tasks/config/.eslint'))
             .pipe(eslint.format())
             .pipe(eslint.failAfterError());
+    });
+
+    gulp.task('less-lint', function () {
+        return gulp.src('./src/**/*.less')
+            .pipe(lesshint({
+                configPath: 'node_modules/pip-webui-tasks/config/.lesshint'
+            }))
+            .pipe(lesshint.reporter());
+    });
+
+    gulp.task('test', function (done) {
+        new Server({
+            configFile: process.cwd() + '/karma.conf.js',
+            singleRun: true
+        }, done).start();
     });
 
     gulp.task('cordova-build', function () {
@@ -181,16 +198,18 @@ module.exports = function () {
     gulp.task('build-res-prod', ['copy-images']);
 
     gulp.task('build-dev', function (callback) {
-        runSequence('lint',
+        runSequence(['less-lint', 'js-lint'],
+            'test',
             ['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'generate-docs'],
             callback);
     });
+
     gulp.task('build-prod', function (callback) {
-        runSequence('lint',
+        runSequence(['less-lint', 'js-lint'],
+            'test',
             ['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'generate-docs'],
             callback);
     });
-
 
     gulp.task('build-clean', function () {
         del([conf.dir.temp, conf.dir.dist, conf.dir.lib]);
