@@ -24,13 +24,15 @@
   "license": "Commercial",
   "private": true,
   "dependencies": {
-
     "angular-mocks": "*",
     "chai": "*",
+    "concurrent-transform": "*",
+    "del": "*",
     "eslint": "^2.13.1",
     "eslint-config-standard": "^5.3.1",
     "eslint-plugin-promise": "*",
     "eslint-plugin-standard": "*",
+    "event-stream": "3.3.2",
     "gulp": "*",
     "gulp-add-src": "*",
     "gulp-awspublish": "*",
@@ -59,15 +61,11 @@
     "karma-mocha": "*",
     "karma-phantomjs-launcher": "*",
     "karma-sinon": "*",
+    "lodash.defaultsdeep": ">=4.x",
+    "merge2": "*",
     "mocha": "*",
     "phantomjs-prebuilt": "*",
     "run-sequence": "*",
-    "sinon": "*",
-
-    "lodash.defaultsdeep": ">=4.x",
-    "merge2": "*",
-    "event-stream": "3.3.2",
-    "concurrent-transform": "*",
-    "del": "*"
+    "sinon": "*"
   }
 }
