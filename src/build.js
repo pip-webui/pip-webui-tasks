@@ -199,14 +199,12 @@ module.exports = function () {
     gulp.task('build-res-prod', ['copy-images']);
 
     gulp.task('build-dev', function (callback) {
-        runSequence('test',
-            ['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'generate-docs'],
+        runSequence(['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'generate-docs'],
             callback);
     });
 
     gulp.task('build-prod', function (callback) {
-        runSequence('test',
-            ['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'generate-docs'],
+        runSequence(['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'generate-docs'],
             callback);
     });
 
