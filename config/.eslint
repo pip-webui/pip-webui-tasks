@@ -51,7 +51,7 @@
         "indent"       : [2, 4, { "SwitchCase": 1, "VariableDeclarator": 1 }],
         "linebreak-style": 2,
         "max-depth"      : [2, {"max": 6}],
-        "max-len"        : [2g, 120, 4, { "ignoreComments": true, "ignoreUrls": true }],
+        "max-len"        : [2, 120, 4, { "ignoreComments": true, "ignoreUrls": true }],
         "newline-after-var"    : 2,
         "newline-before-return": 2,
         "no-lonely-if"       : 2,
