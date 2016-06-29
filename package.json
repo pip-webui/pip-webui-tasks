@@ -41,7 +41,6 @@
     "gulp-eslint": "*",
     "gulp-less": "*",
     "gulp-lesshint": "^1.1.0",
-    "gulp-merge": "*",
     "gulp-minify-css": "*",
     "gulp-minify-html": "*",
     "gulp-ng-annotate": "*",

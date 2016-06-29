@@ -13,7 +13,6 @@ var ngHtml2Js = require('gulp-ng-html2js');
 var addsrc = require('gulp-add-src');
 var ngdocs = require('gulp-ngdocs');
 var del = require('del');
-var merge = require('merge2');
 var eslint = require('gulp-eslint');
 var runSequence = require('run-sequence');
 var lesshint = require('gulp-lesshint');
@@ -59,36 +58,7 @@ module.exports = function () {
             .pipe(gulp.dest(conf.dir.temp));
     });
 
-    gulp.task('build-ts', function () {
-        if (!conf.build.ts) return;
-
-        var tsFiles = [
-            conf.dir.src + '**/*.ts'
-        ].concat(conf.file.def || []);
-
-        var tsResult = gulp.src(tsFiles)
-            .pipe(sourceMaps.init())
-            .pipe(ts({
-                noImplicitAny: true,
-                noExternalResolve: true,
-                declaration: true,
-                sortOutput: true,
-                allowJs: true,
-                target: 'ES5'
-            }));
-
-        return merge([
-            tsResult.dts
-                .pipe(concat(pkg.name + '.d.ts'))
-                .pipe(gulp.dest(conf.dir.dist)),
-            tsResult.js
-                .pipe(concat(pkg.name + '-ts.js'))
-                .pipe(sourceMaps.write('.'))
-                .pipe(gulp.dest(conf.dir.temp))
-        ]);
-    });
-
-    gulp.task('build-js-dev', ['build-html-dev', 'build-ts'], function () {
+    gulp.task('build-js-dev', ['build-html-dev'], function () {
         if (!conf.build.js) return;
 
         return gulp.src([
@@ -103,7 +73,7 @@ module.exports = function () {
             .pipe(gulp.dest(conf.dir.dist));
     });
 
-    gulp.task('build-js-prod', ['build-html-prod', 'build-ts'], function () {
+    gulp.task('build-js-prod', ['build-html-prod'], function () {
         if (!conf.build.js) return;
 
         return gulp.src([
