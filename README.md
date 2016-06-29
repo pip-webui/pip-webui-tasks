@@ -92,7 +92,7 @@ gulp.task('watch', ['build-watch']);
 gulp.task('lint', ['less-lint', 'js-lint']);
 gulp.task('launch', ['samples-launch']);
 gulp.task('publish', ['samples-publish']);
-g
+
 // Set default task
 gulp.task('default', ['build']);
 ```
