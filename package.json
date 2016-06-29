@@ -33,7 +33,6 @@
     "eslint-plugin-promise": "*",
     "eslint-plugin-standard": "*",
     "event-stream": "3.3.2",
-    "gulp": "*",
     "gulp-add-src": "*",
     "gulp-awspublish": "*",
     "gulp-clean-css": "*",
