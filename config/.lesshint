@@ -14,7 +14,7 @@
         "style": "none"
     },
     "depthLevel": {
-        "enabled": true,
+        "enabled": false,
         "depth": 5
     },
     "duplicateProperty": {
