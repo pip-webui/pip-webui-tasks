@@ -17,6 +17,7 @@ var eslint = require('gulp-eslint');
 var runSequence = require('run-sequence');
 var lesshint = require('gulp-lesshint');
 var Server = require('karma').Server;
+var autoprefixer = require('gulp-autoprefixer');
 
 var pkg = require(process.cwd() + '/package.json');
 
@@ -95,6 +96,10 @@ module.exports = function () {
         return gulp.src(conf.dir.src + conf.module.index + '.less')
             .pipe(less())
             .pipe(concat(pkg.name + '.css'))
+            .pipe(autoprefixer({
+                browsers: ['last 2 versions'],
+                cascade: false
+            }))
             .pipe(gulp.dest(conf.dir.dist));
     });
 
