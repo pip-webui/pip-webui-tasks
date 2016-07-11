@@ -64,9 +64,7 @@
     "mocha": "*",
     "phantomjs-prebuilt": "*",
     "run-sequence": "*",
-    "sinon": "*"
-  },
-  "devDependencies": {
+    "sinon": "*",
     "gulp-autoprefixer": "^3.1.0"
   }
 }
