@@ -97,7 +97,7 @@ module.exports = function () {
             .pipe(less())
             .pipe(concat(pkg.name + '.css'))
             .pipe(autoprefixer({
-                browsers: ['last 2 versions'],
+                browsers: ['last 2 versions, ie 11, ie 10,edge 13'],
                 cascade: false
             }))
             .pipe(gulp.dest(conf.dir.dist));
