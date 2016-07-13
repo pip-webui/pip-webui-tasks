@@ -65,6 +65,7 @@
     "phantomjs-prebuilt": "*",
     "run-sequence": "*",
     "sinon": "*",
-    "gulp-autoprefixer": "^3.1.0"
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-connect": "^4.1.0"
   }
 }
