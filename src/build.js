@@ -18,6 +18,7 @@ var runSequence = require('run-sequence');
 var lesshint = require('gulp-lesshint');
 var Server = require('karma').Server;
 var autoprefixer = require('gulp-autoprefixer');
+var connect = require('gulp-connect');
 
 var pkg = require(process.cwd() + '/package.json');
 
