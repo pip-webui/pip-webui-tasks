@@ -17,6 +17,8 @@ var eslint = require('gulp-eslint');
 var runSequence = require('run-sequence');
 var lesshint = require('gulp-lesshint');
 var Server = require('karma').Server;
+var autoprefixer = require('gulp-autoprefixer');
+var connect = require('gulp-connect');
 
 var pkg = require(process.cwd() + '/package.json');
 
@@ -129,13 +131,42 @@ module.exports = function () {
     gulp.task('generate-docs', function () {
         var options = {
             title: 'API Reference',
-            html5Mode: true
+            html5Mode: true,
+            scripts: [
+                'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.20/angular.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.20/angular-animate.min.js'
+            ],
+            loadDefaults: {
+                angular: false,
+                marked: false,
+                angularAnimate: false
+            }
+
         };
 
         return gulp.src('./src/**/*.js')
             .pipe(ngdocs.process(options))
             .pipe(gulp.dest('./doc/api'));
     });
+
+    gulp.task('doc-connect', function() {
+        connect.server({
+            root: './doc/api',
+            port: 3000
+        });
+    });
+
+    gulp.task('html', function () {
+        gulp.src('./doc/api/*.html')
+            .pipe(connect.reload());
+    });
+
+    gulp.task('doc-watch', function () {
+        gulp.watch(['./src/**/*.js'], ['generate-docs', 'html']);
+    });
+
+    gulp.task('doc-serve', ['doc-connect', 'doc-watch']);
 
     gulp.task('js-lint', function () {
         return gulp.src('./src/**/*.js')
