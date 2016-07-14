@@ -56,5 +56,14 @@ module.exports = {
             secretAccessKey: 'otMg2vQLZjF4Nkb90j1prtugoUCNm3XqLS/KkHyc',
             region: 'us-west-1'
         }
+    },
+    docs: {
+        port: 8000,
+        publish: {
+            bucket: 'webui-api.pipdevs.com',
+            accessKeyId: 'AKIAIEXTTAEEHYPHS3OQ',
+            secretAccessKey: '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',
+            region: 'us-west-1'
+        }
     }
 };
