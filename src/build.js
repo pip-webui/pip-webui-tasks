@@ -20,7 +20,9 @@ var Server = require('karma').Server;
 var autoprefixer = require('gulp-autoprefixer');
 var connect = require('gulp-connect');
 
+// For docs publishing
 var awspublish = require('gulp-awspublish');
+var rename = require('gulp-rename');
 
 var pkg = require(process.cwd() + '/package.json');
 
