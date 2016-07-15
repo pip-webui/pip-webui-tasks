@@ -20,6 +20,8 @@ var Server = require('karma').Server;
 var autoprefixer = require('gulp-autoprefixer');
 var connect = require('gulp-connect');
 
+var awspublish = require('gulp-awspublish');
+
 var pkg = require(process.cwd() + '/package.json');
 
 var defaultConfig = require('./default_config');
@@ -155,6 +157,28 @@ module.exports = function () {
             root: './doc/api',
             port: 3000
         });
+    });
+
+    gulp.task('doc-publish', function () {
+        var
+            publisher = awspublish.create({
+                params: {
+                    Bucket: conf.docs.publish.bucket
+                },
+                accessKeyId: conf.docs.publish.accessKeyId,
+                secretAccessKey: conf.docs.publish.secretAccessKey,
+                region: conf.docs.publish.region
+            });
+
+        return gulp.src([
+            conf.dir.docs + '**/*'
+        ], {xbase: '.'})
+            .pipe(rename(function (path) {
+                path.dirname = '/' + pkg.name + '/' + path.dirname
+            }))
+            .pipe(parallelize(publisher.publish(), 5))
+            .pipe(publisher.sync(pkg.name))
+            .pipe(awspublish.reporter());
     });
 
     gulp.task('html', function () {
