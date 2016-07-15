@@ -29,7 +29,7 @@ module.exports = function () {
 
             distFiles = gulp.src([
                 conf.dir.lib + '/**/*',
-                conf.dir.dist + '/**/*',
+                conf.dir.dist + '/**/*'
             ], {xbase: '.'}),
 
             indexFiles = gulp.src([
