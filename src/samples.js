@@ -57,6 +57,8 @@ module.exports = function () {
             bufForLibs = [],
             externalLibFiles;
 
+         console.log('-----------------> distFiles', distFiles);
+
         conf.external_libs.forEach(function (lib) {
             bufForLibs.push(lib.dir);
         });
