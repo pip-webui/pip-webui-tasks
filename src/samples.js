@@ -58,7 +58,7 @@ module.exports = function () {
             externalLibFiles;
 
         conf.external_libs.forEach(function (lib) {
-            bufForLibs.push(lib.dir + '/**/*');
+            bufForLibs.push(lib.accurate ? lib.dir: lib.dir + '/**/*');
         });
 
         externalLibFiles = gulp.src(bufForLibs, {xbase: '.'});

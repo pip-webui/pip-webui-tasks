@@ -68,7 +68,9 @@ module.exports = {
         }
     },
     external_libs: [
-        {dir: './node_modules/prismjs', name: 'Prism.js'},
-        {dir: './node_modules/pip-webui-tasks/node_modules/prismjs', name: 'Prism.js'}
+        {dir: './node_modules/prismjs/prism.js', name: 'Prism.js', accurate: true},
+        {dir: './node_modules/pip-webui-tasks/node_modules/prismjs/prism.js', name: 'Prism.js', accurate: true},
+        {dir: './node_modules/prismjs/themes/prism.css', name: 'Prism.js  styles', accurate: true},
+        {dir: './node_modules/pip-webui-tasks/node_modules/prismjs/themes/prism.css', name: 'Prism.js styles', accurate: true}
     ]
 };
