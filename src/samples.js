@@ -44,7 +44,10 @@ module.exports = function () {
                 .pipe(replace('.' + conf.dir.lib, '/' + pkg.name + '/'))
                 .pipe(replace('../../.' + conf.dir.dist, '/' + pkg.name + '/'))
                 .pipe(replace('../.' + conf.dir.dist, '/' + pkg.name + '/'))
-                .pipe(replace('.' + conf.dir.dist, '/' + pkg.name + '/')),
+                .pipe(replace('.' + conf.dir.dist, '/' + pkg.name + '/'))
+                .pipe(replace('../../.' + conf.dir.import, '/' + pkg.name + '/'))
+                .pipe(replace('../.' + conf.dir.import, '/' + pkg.name + '/'))
+                .pipe(replace('.' + conf.dir.import, '/' + pkg.name + '/')),
 
             sampleFiles = gulp.src([
                 conf.dir.samples + '**/*',
@@ -57,8 +60,6 @@ module.exports = function () {
         conf.external_libs.forEach(function (lib) {
             bufForLibs.push(lib.dir);
         });
-
-        console.log('----> bufForLibs', bufForLibs);
 
         externalLibFiles = gulp.src(bufForLibs, {xbase: '.'});
 
