@@ -58,7 +58,7 @@ module.exports = function () {
             bufForLibs.push(lib.accurate ? lib.dir: lib.dir + '/**/*');
 
             if (lib.accurate) {
-                console.log("lib.dir.substr(0, lib.dir.lastIndexOf('/')", lib.dir.substr(0, lib.dir.lastIndexOf('/')));
+                console.log("lib.dir.substr(0, lib.dir.lastIndexOf('/')", '.' + lib.dir.substr(0, lib.dir.lastIndexOf('/') + 1));
 
                 indexFiles.pipe(replace('.' + lib.dir.substr(0, lib.dir.lastIndexOf('/') + 1), ''));
             }
