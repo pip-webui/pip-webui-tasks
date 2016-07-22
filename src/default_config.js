@@ -66,5 +66,9 @@ module.exports = {
             secretAccessKey: 'otMg2vQLZjF4Nkb90j1prtugoUCNm3XqLS/KkHyc',
             region: 'us-west-1'
         }
-    }
+    },
+    external_libs: [
+        {dir: './node_modules/prismjs', name: 'Prism.js'},
+        {dir: './node_modules/pip-webui-tasks/node_modules/prismjs', name: 'Prism.js'}
+    ]
 };
