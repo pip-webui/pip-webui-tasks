@@ -1,3 +1,0 @@
-# Pip.WebUI.Tasks build.config.js file structure
-
-TBD...
