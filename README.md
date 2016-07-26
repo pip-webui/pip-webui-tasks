@@ -1,31 +1,20 @@
-# Build Tasks for Pip.WebUI Projects
+# Build tasks for Pip.WebUI Projects
 
-This project provides standard gulp tasks to build Pip.WebUI projects:
+This module provides gulp tasks to build Pip.WebUI projects:
 
 * Build deployable artifacts from sources in JavaScript, TypeScript, HTML, CSS/Less
 * Copy external libraries and other resources to the destination folder
 * Run tests, validate sources
-* Launch and publish sample projects
-* Publish final applications
+* Generate API documentation
+* Launch and publish samples
+* Build hybrid cordova apps
+* Publish complete applications
 
-## Quick Links:
+## Quick Links
 
-* [Usage](#usage)
-    - [Step 1. Add dependency to pip-webui-tasks in your package.json file](#step_1)
-    - [Step 2. Create build configuration](#step_2)
-    - [Step 3. Create gulp file](#step_3)
-* [Tasks Reference](#tasks)
-* [Configuration](#config)
-    - [module section](#module_section)
-    - [dir section](#dir_section)
-    - [file section](#file_section)
-    - [build section](#build_section)
-    - [samples section](#samples_section)
-* [Community](#community)
-* [Contributing](#contributing)
-* [Build](#build)
-* [License](#license)
-
+- [Usage instructions](#usage)
+- [Tasks reference for gulpfile.js](#tasks)
+- [Configuration in build.config.js](#config)
 
 ## <a name="usage"></a> Usage
 
@@ -37,7 +26,7 @@ Using standard build tasks in your projects is pretty easy. There are only 3 sim
 ...
 "devDependencies": {
     ...
-    "pip-webui-tasks": "git+ssh://git@github.com:pip-webui-tasks/pip-webui-tasks.git#master"
+    "pip-webui-tasks": "*"
     ...
 }
 ...
@@ -62,6 +51,11 @@ module.exports = {
         lib: true,
         images: true
     },
+    file: {
+        import: [
+            './bower_components/pip-webui/dist/**/*'
+        ]
+    }
     samples: {
         port: 8099,
         publish: {
@@ -89,7 +83,7 @@ gulp.task('build', ['build-dev', 'build-prod']);
 gulp.task('rebuild', ['build-dev']);
 gulp.task('clean', ['build-clean']);
 gulp.task('watch', ['build-watch']);
-gulp.task('lint', ['less-lint', 'js-lint']);
+gulp.task('lint', ['test-lesslint', 'test-jslint']);
 gulp.task('launch', ['samples-launch']);
 gulp.task('publish', ['samples-publish']);
 
@@ -97,7 +91,7 @@ gulp.task('publish', ['samples-publish']);
 gulp.task('default', ['build']);
 ```
 
-You can always add your tasks and mix them with the standard ones.
+You can always add your own tasks and mix them with the standard ones. 
 
 ## <a name="tasks"></a> Tasks Reference
 
@@ -119,9 +113,9 @@ You can always add your tasks and mix them with the standard ones.
 
 ## Test tasks
 
-- **js-lint** - Performs validation of JavaScript source files by eslint (config is located in `config` folder `.eslint`)
-- **less-lint** - Performs validation of less source files by lesshint (config is located in `config` folder `.lesshint`)
-- **test** - Performs running unit-test by karma runner.
+- **tast-jslint** - Performs validation of JavaScript source files by eslint (config is located in `config` folder `.eslint`)
+- **test-lesslint** - Performs validation of less source files by lesshint (config is located in `config` folder `.lesshint`)
+- **test-karma** - Performs running unit-test by karma runner.
 
 ## Samples tasks
 
@@ -147,12 +141,15 @@ Configuration parameters to set names of standard project folders
 - **lib**: string - Temporary folder where all 3rd party libraries are copied (default: './lib')
 - **dist**: string - Distination folder for produced artifacts (default: './dist')
 - **samples**: string - Folder where samples are located (default: './samples')
+- **cordova**: string - Location to copy web application for cordova build (default: './cordova/www')
+- **api**: string - Folder to place generated API documentation (default: './doc/api')
 
 ##<a name="file_section"></a> file section
 
 Configuration parameters for file sets
-- **import**: string[] - Files and folders in 3rd party librarties to copied over to lib and used in testing and samples (default: all pip-webui modules)
+- **import**: string[] - Files and folders in 3rd party librarties to copied over to lib and used in testing and samples (default: pip-webui module)
 - **def**: string[] - Type definitions which are used to compile TypeScript code (default: all files in typings folder)
+- **res**: string[] - Resources and folders to copy over to lib folder (default: empty)
 
 ##<a name="build_section"></a> build section
 
@@ -174,36 +171,13 @@ Configuration parameters to control samples tasks
   - **secretAccessKey**: string - Secret access key for AWS account
   - **region**: string - AWS region where S3 bucket is located
 
+##<a name="api_section"></a> api section
 
-## <a name="community"></a>Community
+Configuration parameters to documentation generation tasks
+- **publish**: object - S3 bucket properties for api documentation publishing
+  - **bucket**: string - S3 bucket name
+  - **accessKeyId**: string - Access key for AWS account
+  - **secretAccessKey**: string - Secret access key for AWS account
+  - **region**: string - AWS region where S3 bucket is located
 
-* Follow [@pip.webui on Twitter](http://link.com)
-* Subscribe to the [PIP.WebUI Newsletter](http://link.com)
-* Have a question that's not a feature request or bug report? Discuss on the [PIP Forum](https://groups.google.com/forum/#!forum/pipdevs)
-* Have a feature request or find a bug? [Submit an issue](http://link.com)
-* Join our Community Slack Group! [PIP Worldwide](http://link.com)
-
-
-## <a name="contributing"></a>Contributing
-
-Developers interested in contributing should read the following guidelines:
-
-* [Issue Guidelines](http://somelink.com)
-* [Contributing Guidelines](http://somelink.com)
-* [Coding guidelines](http://somelink.com)
-
-> Please do **not** ask general questions in an issue. Issues are only to report bugs, request
-  enhancements, or request new features. For general questions and discussions, use the
-  [Pip Devs Forum](https://groups.google.com/forum/#!forum/pipdevs).
-
-It is important to note that for each release, the [ChangeLog](CHANGELOG.md) is a resource that will
-itemize all:
-
-- Bug Fixes
-- New Features
-- Breaking Changes
-
-
-## <a name="license"></a>License
-
-PIP.WebUI is under [MIT licensed](LICENSE).
+For more information about Pip.WebUI project, please, visit http://www.pipwebui.org
