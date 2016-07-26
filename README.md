@@ -113,8 +113,8 @@ You can always add your own tasks and mix them with the standard ones.
 
 ## Test tasks
 
-- **tast-jslint** - Performs validation of JavaScript source files by eslint (config is located in `config` folder `.eslint`)
-- **test-lesslint** - Performs validation of less source files by lesshint (config is located in `config` folder `.lesshint`)
+- **test-jslint** - Performs validation of JavaScript source files by eslint
+- **test-lesslint** - Performs validation of less source files by lesshint
 - **test-karma** - Performs running unit-test by karma runner.
 
 ## Samples tasks
@@ -179,5 +179,13 @@ Configuration parameters to documentation generation tasks
   - **accessKeyId**: string - Access key for AWS account
   - **secretAccessKey**: string - Secret access key for AWS account
   - **region**: string - AWS region where S3 bucket is located
+
+##<a name="eslint_section"></a> eslint section
+
+See [eslint documentation...](http://eslint.org/docs/user-guide/configuring)
+
+##<a name="lesslint_section"></a> lesslint section
+
+See [lesslint documentation...](https://github.com/lesshint/lesshint#configuration)
 
 For more information about Pip.WebUI project, please, visit http://www.pipwebui.org
