@@ -1,4 +1,4 @@
-# Build tasks for Pip.WebUI Projects
+# <img src="https://github.com/pip-webui/pip-webui/blob/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Build tasks for Pip.WebUI Projects
 
 This module provides gulp tasks to build Pip.WebUI projects:
 
