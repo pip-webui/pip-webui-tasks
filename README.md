@@ -52,7 +52,7 @@ module.exports = {
         images: true
     },
     file: {
-        import: [
+        lib: [
             './bower_components/pip-webui/dist/**/*'
         ]
     }
