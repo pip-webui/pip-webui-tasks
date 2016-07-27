@@ -21,8 +21,8 @@
     "tasks"
   ],
   "noAnalyze": true,
-  "license": "Commercial",
-  "private": true,
+  "license": "MIT",
+  "private": false,
   "dependencies": {
     "angular-mocks": "*",
     "chai": "*",
