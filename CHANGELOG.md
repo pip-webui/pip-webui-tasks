@@ -1,35 +1,18 @@
 # Changelog
 
-### 1.0.0 (2016-04-27)
------
+## 1.0.0 (2016-07-30)
 
-#### Enhancements:
+### Features:
 
-* **build** Build tasks for JavaScript, TypeScript, HTML, CSS/Less, Library, etc.
-* **test** Test tasks: eslint, lesshint and unit tests
-* **samples** Launching web browser, publish on S3
+* **build** - Build tasks for JavaScript, TypeScript, HTML, CSS/Less, Library, etc.
+* **test** - Test tasks with eslint, lesshint and unit tests
+* **samples** - Samples tasks to launching web browser and publish on S3
+* **publish** - Publish tasks to publish complex applications on S3
+* **cordova** - Cordova tasks to support cordova builds
+* **api** - API documentation task
 
-#### Breaking Changes
+### Breaking Changes
 * No breaking changes in this version
 
-#### Bug Fixes
+### Bug Fixes
 No fixes in this version
-
-<br/>
-
-### 0.0.0 (2016-01-01) Template
------
-
-#### Enhancements:
-
-* new performed features
-
-#### Breaking Changes
-* what has been changed
-
-#### Bug Fixes
-
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature

@@ -111,6 +111,10 @@ You can always add your own tasks and mix them with the standard ones.
 - **build-watch** - Watches for changed files in src folder and automatically starts development build
 - **build-clean** - Cleans temp and dist folders
 
+## Cordova tasks
+
+- **cordova-copy** - Copies content from ./dist folder to cordova www location
+
 ## Test tasks
 
 - **test-jslint** - Performs validation of JavaScript source files by eslint
@@ -121,6 +125,12 @@ You can always add your own tasks and mix them with the standard ones.
 
 - **samples-launch** - Launches web-server and web-browser to access samples
 - **samples-publish** - Publishes samples to S3-based static website
+
+## API tasks
+
+- **api-generate** - Generates API documentation
+- **api-launch** - Launches web-server and web-browser to access API documentation
+- **api-publish** - Publishes API documentation to S3-based static website
 
 ## <a name="config"></a> Configuration
 
@@ -147,7 +157,7 @@ Configuration parameters to set names of standard project folders
 ##<a name="file_section"></a> file section
 
 Configuration parameters for file sets
-- **import**: string[] - Files and folders in 3rd party librarties to copied over to lib and used in testing and samples (default: pip-webui module)
+- **lib**: string[] - Files and folders in 3rd party librarties to copied over to lib and used in testing and samples (default: pip-webui module)
 - **def**: string[] - Type definitions which are used to compile TypeScript code (default: all files in typings folder)
 - **res**: string[] - Resources and folders to copy over to lib folder (default: empty)
 
@@ -173,7 +183,8 @@ Configuration parameters to control samples tasks
 
 ##<a name="api_section"></a> api section
 
-Configuration parameters to documentation generation tasks
+Configuration parameters for API documentation generation tasks
+- **port**: number - Launched web server port (default: 8008)
 - **publish**: object - S3 bucket properties for api documentation publishing
   - **bucket**: string - S3 bucket name
   - **accessKeyId**: string - Access key for AWS account
@@ -182,10 +193,10 @@ Configuration parameters to documentation generation tasks
 
 ##<a name="eslint_section"></a> eslint section
 
-See [eslint documentation...](http://eslint.org/docs/user-guide/configuring)
+See [eslint documentation](http://eslint.org/docs/user-guide/configuring) for details.
 
 ##<a name="lesslint_section"></a> lesslint section
 
-See [lesslint documentation...](https://github.com/lesshint/lesshint#configuration)
+See [lesslint documentation](https://github.com/lesshint/lesshint#configuration) for details.
 
 For more information about Pip.WebUI project, please, visit http://www.pipwebui.org

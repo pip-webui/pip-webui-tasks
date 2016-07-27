@@ -9,8 +9,8 @@
       "email": "seroukhov@gmail.com"
     },
     {
-      "name": "Mark Zontak",
-      "email": "mark@zontak.me"
+        "name": "Alexey Dvoikin",
+        "email": "94dvoikin@gmail.com"
     }
   ],
   "main": "./src/index.js",
@@ -33,6 +33,8 @@
     "eslint-plugin-promise": "*",
     "eslint-plugin-standard": "*",
     "event-stream": "3.3.2",
+    "gulp": "*",
+    "gulp-merge": "*",
     "gulp-add-src": "*",
     "gulp-awspublish": "*",
     "gulp-clean-css": "*",
