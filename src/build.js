@@ -1,5 +1,3 @@
-var _defaultsDeep = require('lodash.defaultsdeep');
-
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var ts = require('gulp-typescript');
@@ -15,11 +13,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 
 var pkg = require(process.cwd() + '/package.json');
-
-var defaultConfig = require('./default_config');
-var buildConfig = require(process.cwd() + '/build.conf.js');
-
-var conf = _defaultsDeep(buildConfig, defaultConfig);
+var conf = require('./config');
 
 module.exports = function () {
 

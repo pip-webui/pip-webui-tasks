@@ -1,14 +1,9 @@
-var _defaultsDeep = require('lodash.defaultsdeep');
-
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var lesshint = require('gulp-lesshint');
 var Server = require('karma').Server;
 
-var defaultConfig = require('./default_config');
-var buildConfig = require(process.cwd() + '/build.conf.js');
-
-var conf = _defaultsDeep(buildConfig, defaultConfig);
+var conf = require('./config');
 
 module.exports = function () {
 

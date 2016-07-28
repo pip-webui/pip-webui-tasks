@@ -1,6 +1,17 @@
 # Pip.WebUI.Tasks Changelog
 
-## 1.0.0 (2016-07-30)
+## 1.1.0 (2016-07-27)
+
+Addressing critical security flaw related to storing AWS inside build.conf file in git.
+Now all keys shall be kept in a separate build.secret.js file that shall never stored in git.  
+
+### Features:
+
+* **build.secret.js**: secret build configuration file to avoid storing sensitive information like AWS key into git
+
+## 1.0.0 (2016-07-25)
+
+Initial release with standard build, test, samples, api and publish tasks
 
 ### Features:
 
