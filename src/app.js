@@ -33,7 +33,7 @@ module.exports = function () {
                 .pipe(replace(pkg.name + '-lib.css', pkg.name + '-lib.min.css'))
                 .pipe(replace(pkg.name + '-lib.js', pkg.name + '-lib.min.js'))
                 .pipe(replace(pkg.name + '.css', pkg.name + '.min.css'))
-                .pipe(replace(pkg.name + '.js', pkg.name + '.min.js')),
+                .pipe(replace(pkg.name + '.js', pkg.name + '.min.js'));
                 // .pipe(replace('../../.' + conf.dir.lib, '/' + pkg.name + '/'))
                 // .pipe(replace('../.' + conf.dir.lib, '/' + pkg.name + '/'))
                 // .pipe(replace('.' + conf.dir.lib, '/' + pkg.name + '/'))
