@@ -18,4 +18,4 @@ try {
     // Ignore...
 }
 
-module.export = conf;
+module.exports = conf;

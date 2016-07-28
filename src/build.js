@@ -82,7 +82,7 @@ module.exports = function () {
     gulp.task('build-css-dev', function () {
         if (!conf.build.css) return;
 
-        return gulp.src(conf.dir.src + conf.module.index + '.less')
+        return gulp.src(conf.dir.src + conf.module.styles + '.less')
             .pipe(less())
             .pipe(concat(pkg.name + '.css'))
             .pipe(gulp.dest(conf.dir.dist));
@@ -91,7 +91,7 @@ module.exports = function () {
     gulp.task('build-css-prod', function () {
         if (!conf.build.css) return;
 
-        return gulp.src(conf.dir.src + conf.module.index + '.less')
+        return gulp.src(conf.dir.src + conf.module.styles + '.less')
             .pipe(less())
             .pipe(minifyCss())
             .pipe(concat(pkg.name + '.min.css'))
@@ -119,13 +119,22 @@ module.exports = function () {
     gulp.task('build-res-dev', ['copy-images']);
     gulp.task('build-res-prod', ['copy-images']);
 
+    gulp.task('copy-dist', function () {
+        if (!conf.build.dist) return;
+
+        return gulp.src(conf.dir.lib + '**/*.*', {base: conf.dir.lib})
+            .pipe(gulp.dest(conf.dir.dist));
+    });
+
+    gulp.task('build-dist', ['copy-dist']);
+
     gulp.task('build-dev', function (callback) {
-        runSequence(['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'generate-docs'],
+        runSequence(['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'build-dist'],
             callback);
     });
 
     gulp.task('build-prod', function (callback) {
-        runSequence(['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'generate-docs'],
+        runSequence(['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'build-dist'],
             callback);
     });
 

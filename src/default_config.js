@@ -2,6 +2,7 @@ module.exports = {
     module: {
         name: 'pipModule',
         index: 'index',
+        styles: 'styles',
         prefix: ''
     },
 
@@ -33,7 +34,18 @@ module.exports = {
         html: true,
         css: true,
         lib: true,
-        images: true
+        images: true,
+        dist: true
+    },
+
+    app: {
+        port: 8000,
+        publish: {
+            bucket: 'my_app_bucket',
+            accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
+            secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+            region: 'us-west-1'
+        }
     },
 
     samples: {

@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var ngdocs = require('gulp-ngdocs');
 var runSequence = require('run-sequence');
 var connect = require('gulp-connect');
+var del = require('del');
 
 // For api publishing
 var awspublish = require('gulp-awspublish');
@@ -74,6 +75,10 @@ module.exports = function () {
     });
 
     gulp.task('api-launch', ['api-connect', 'api-watch']);
+
+    gulp.task('api-clean', function () {
+        del([conf.dir.api]);
+    });
 
     // Left for backward compatibility
     gulp.task('generate-docs', ['api-generate']);

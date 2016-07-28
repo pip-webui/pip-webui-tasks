@@ -44,22 +44,9 @@ module.exports = function () {
             sampleFiles = gulp.src([
                 conf.dir.samples + '**/*',
                 '!' + conf.dir.samples + '**/index.*'
-            ], {xbase: '.'}),
+            ], {xbase: '.'});
 
-            bufForLibs = [],
-            externalLibFiles;
-
-        conf.external_libs.forEach(function (lib) {
-            bufForLibs.push(lib.accurate ? lib.dir: lib.dir + '/**/*');
-
-            if (lib.accurate) {
-                indexFiles.pipe(replace('.' + lib.dir.substr(0, lib.dir.lastIndexOf('/') + 1), ''));
-            }
-        });
-
-        externalLibFiles = gulp.src(bufForLibs, {xbase: '.'});
-
-        return es.merge([distFiles, externalLibFiles, indexFiles, sampleFiles])
+        return es.merge([distFiles, indexFiles, sampleFiles])
             .pipe(rename(function (path) {
                 path.dirname = '/' + pkg.name + '/' + path.dirname
             }))
