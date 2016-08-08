@@ -28,6 +28,8 @@ module.exports = {
         res: []
     },
 
+    submodules: [],
+
     build: {
         js: true,
         ts: true,

@@ -24,6 +24,8 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "async": "*",
+    "minimist": "*",
     "angular-mocks": "*",
     "chai": "*",
     "concurrent-transform": "*",

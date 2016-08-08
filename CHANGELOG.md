@@ -1,5 +1,13 @@
 # Pip.WebUI.Tasks Changelog
 
+## 1.1.0 (2016-08-08)
+
+Added suppport for complex projects with submodules
+
+### Features:
+
+* **submodules**: tasks to init project, update versions, checkout, checkin and publish
+
 ## 1.1.0 (2016-07-27)
 
 Addressing critical security flaw related to storing AWS inside build.conf file in git.
@@ -10,7 +18,7 @@ Added suppport for application builds.
 ### Features:
 
 * **build.secret.js**: secret build configuration file to avoid storing sensitive information like AWS key into git
-* **app**: app tasks to launch web browser and publish on S3
+* **app** tasks to launch web browser and publish on S3
 
 ### Breaking Changes
 * Removed **external_libs**
@@ -28,10 +36,10 @@ Initial release with standard build, test, samples, api and publish tasks
 
 ### Features:
 
-* **build**: build tasks for JavaScript, TypeScript, HTML, CSS/Less, Library, etc.
-* **test**: test tasks with eslint, lesshint and unit tests
-* **samples**: samples tasks to launching web browser and publish on S3
-* **publish**: publish tasks to publish complex applications on S3
-* **cordova**: cordova tasks to support cordova builds
-* **api**: API documentation tasks
+* **build** tasks for JavaScript, TypeScript, HTML, CSS/Less, Library, etc.
+* **test** tasks with eslint, lesshint and unit tests
+* **samples** tasks to launching web browser and publish on S3
+* **publish** tasks to publish complex applications on S3
+* **cordova** tasks to support cordova builds
+* **api** documentation tasks
 

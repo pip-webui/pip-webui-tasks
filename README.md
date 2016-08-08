@@ -132,6 +132,17 @@ You can always add your own tasks and mix them with the standard ones.
 - **api-launch** - Launches web-server and web-browser to access API documentation
 - **api-publish** - Publishes API documentation to S3-based static website
 
+## Submodules tasks
+
+- **submodules-init** - Initiatizes submodules
+- **submodules-link** - Links node_modules from the parent to submodules
+- **submodules-clean** - Cleans all submodules
+- **submodules-build** - Rebuilds all submodules
+- **submodules-checkout** - Checks out changes to all submodules
+- **submodules-checkin** - Commits in changes from all submodules and pushes them to github
+- **submodules-version** - Updates the version defined in the parent across all submodules
+- **submodules-publish** - Creates git tags and makes NPM publish across all submodules
+
 ## <a name="config"></a> Configuration
 
 Build configuration file is broken into few sections
