@@ -141,7 +141,8 @@ You can always add your own tasks and mix them with the standard ones.
 - **submodules-checkout** - Checks out changes to all submodules
 - **submodules-checkin** - Commits in changes from all submodules and pushes them to github
 - **submodules-version** - Updates the version defined in the parent across all submodules
-- **submodules-publish** - Creates git tags and makes NPM publish across all submodules
+- **submodules-tag** - Creates git tags and all submodules
+- **submodules-publish** - Publishes submodules to npm
 
 ## <a name="config"></a> Configuration
 

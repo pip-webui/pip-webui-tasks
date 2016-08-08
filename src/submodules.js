@@ -130,12 +130,22 @@ module.exports = function () {
         };
     }
 
-    function publish() {
+    function tags() {
         return function(callback) {
             async.series([
                 submodulesTask('git tag v' + pkg.version),
                 submodulesTask('git push --tags'),
-                submodulesTask('npm publish'),
+                parentTask('git tag v' + pkg.version),
+                parentTask('git push --tags')
+            ], callback);
+        };        
+    }
+
+    function tag() {
+        return function(callback) {
+            async.series([
+                submodulesTask('git tag v' + pkg.version),
+                submodulesTask('git push --tags'),
                 parentTask('git tag v' + pkg.version),
                 parentTask('git push --tags')
             ], callback);
@@ -151,6 +161,7 @@ module.exports = function () {
     gulp.task('submodules-checkin', checkin(argv.m || 'Updated submodules'));
 
     gulp.task('submodules-version', version(argv.v || pkg.version));
-    gulp.task('submodules-publish', publish());
+    gulp.task('submodules-tag', tag());
+    gulp.task('submodules-publish', submodulesTask('npm publish'));
 
 };
