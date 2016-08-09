@@ -48,7 +48,7 @@ module.exports = function () {
             async.eachSeries(
                 conf.submodules, 
                 function(submodule, callback) {
-                    var command = 'mklink /J ' + submodule + '/node_modules node_modules';
+                    var command = 'mklink /J ' + submodule + '\\node_modules node_modules';
                     execTask(process.cwd(), command, true)(callback);
                 },
                 function (err) {
