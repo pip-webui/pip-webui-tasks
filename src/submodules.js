@@ -10,7 +10,7 @@ var conf = require('./config');
 module.exports = function () {
 
     function execTask(cwd, command, force) {
-        return function(callback) {
+        return function(callback) {            
             var options = { cwd: cwd };
 
             console.log("Executing: '" + command + "' at " + cwd);
@@ -32,13 +32,13 @@ module.exports = function () {
     function submodulesTask(command, force) {
         return function(callback) {
             async.eachSeries(
-                conf.submodules,
+                conf.submodules, 
                 function(submodule, callback) {
                     execTask(process.cwd() + '/' + submodule, command, force)(callback);
                 },
                 function (err) {
                     callback(err);
-                }
+                } 
             );
         };
     }
@@ -46,14 +46,14 @@ module.exports = function () {
     function submodulesLink() {
         return function(callback) {
             async.eachSeries(
-                conf.submodules,
+                conf.submodules, 
                 function(submodule, callback) {
                     var command = 'mklink /J ' + submodule + '\\node_modules node_modules';
                     execTask(process.cwd(), command, true)(callback);
                 },
                 function (err) {
                     callback(err);
-                }
+                } 
             );
         };
     }
@@ -79,7 +79,7 @@ module.exports = function () {
                 submodulesTask('git checkout master'),
                 submodulesTask('git pull origin master')
             ], callback);
-        };
+        };        
     }
 
     function version(version) {
@@ -100,7 +100,7 @@ module.exports = function () {
             allModules = allModules.concat(conf.submodules);
 
             async.eachSeries(
-                allModules,
+                allModules, 
                 function(submodule, callback) {
                     try {
                         var pkgFile = process.cwd() + '/' + submodule + '/package.json';
@@ -116,7 +116,7 @@ module.exports = function () {
                 },
                 function (err) {
                     callback(err);
-                }
+                } 
             );
         };
     }
@@ -127,7 +127,7 @@ module.exports = function () {
                 parentTask('git pull origin master'),
                 submodulesTask('git pull origin master')
             ], callback);
-        }
+        }        
     }
 
     function checkin(message) {
@@ -151,7 +151,7 @@ module.exports = function () {
                 parentTask('git tag v' + pkg.version),
                 parentTask('git push --tags')
             ], callback);
-        };
+        };        
     }
 
     function tag() {
@@ -162,7 +162,7 @@ module.exports = function () {
                 parentTask('git tag v' + pkg.version),
                 parentTask('git push --tags')
             ], callback);
-        };
+        };        
     }
 
     gulp.task('submodules-init', init());

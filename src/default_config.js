@@ -43,10 +43,24 @@ module.exports = {
     app: {
         port: 8000,
         publish: {
-            bucket: 'my_app_bucket',
-            accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
-            secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-            region: 'us-west-1'
+            alpha: {
+                bucket: 'my_app_bucket',
+                accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
+                secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+                region: 'us-west-1'
+            },
+            beta: {
+                bucket: 'my_app_bucket',
+                accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
+                secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+                region: 'us-west-1'
+            },
+            production: {
+                bucket: 'my_app_bucket',
+                accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
+                secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+                region: 'us-west-1'
+            }
         }
     },
 

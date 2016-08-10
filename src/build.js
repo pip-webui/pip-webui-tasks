@@ -22,8 +22,8 @@ module.exports = function () {
         if (!conf.build.html) return;
 
         return gulp.src([
-                conf.dir.src + '**/*.html'
-            ])
+            conf.dir.src + '**/*.html'
+        ])
             .pipe(ngHtml2Js({
                 moduleName: conf.module.name + '.Templates',
                 prefix: conf.module.prefix,
@@ -37,8 +37,8 @@ module.exports = function () {
         if (!conf.build.html) return;
 
         return gulp.src([
-                conf.dir.src + '**/*.html'
-            ])
+            conf.dir.src + '**/*.html'
+        ])
             .pipe(minifyHtml({empty: true, quotes: true, spare: true}))
             .pipe(ngHtml2Js({
                 moduleName: conf.module.name + '.Templates',
@@ -82,9 +82,9 @@ module.exports = function () {
         if (!conf.build.js) return;
 
         return gulp.src([
-                conf.dir.src + '**/*.js',
-                conf.dir.temp + pkg.name + '-ts.js'
-            ])
+            conf.dir.src + '**/*.js',
+            conf.dir.temp + pkg.name + '-ts.js'
+        ])
             .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
             .pipe(addsrc(conf.dir.temp + pkg.name + '-html.js'))
             .pipe(sourceMaps.init({loadMaps: true}))
@@ -97,9 +97,9 @@ module.exports = function () {
         if (!conf.build.js) return;
 
         return gulp.src([
-                conf.dir.src + '**/*.js',
-                conf.dir.temp + pkg.name + '-ts.js'
-            ])
+            conf.dir.src + '**/*.js',
+            conf.dir.temp + pkg.name + '-ts.js'
+        ])
             .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
             .pipe(addsrc(conf.dir.temp + pkg.name + '-html.min.js'))
             //.pipe(sourceMaps.init({ loadMaps: true }))
@@ -159,12 +159,12 @@ module.exports = function () {
     gulp.task('build-dist', ['copy-dist']);
 
     gulp.task('build-dev', function (callback) {
-        runSequence(['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev', 'build-dist'],
+        runSequence(['build-js-dev', 'build-css-dev', 'build-lib-dev', 'build-res-dev'], 'build-dist',
             callback);
     });
 
     gulp.task('build-prod', function (callback) {
-        runSequence(['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod', 'build-dist'],
+        runSequence(['build-js-prod', 'build-css-prod', 'build-lib-prod', 'build-res-prod'], 'build-dist',
             callback);
     });
 
