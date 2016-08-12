@@ -8,7 +8,7 @@ This module provides gulp tasks to build Pip.WebUI projects:
 * Generate API documentation
 * Launch and publish samples
 * Build hybrid cordova apps
-* Publish complete applications
+* Build and publish complete applications
 
 ## Quick Links
 
@@ -18,7 +18,7 @@ This module provides gulp tasks to build Pip.WebUI projects:
 
 ## <a name="usage"></a> Usage
 
-Using standard build tasks in your projects is pretty easy. There are only 3 simple steps you need to do
+Using standard build tasks in your projects is pretty easy. There are only 3 simple steps you need to take:
 
 ###<a name="step_1"></a> Step 1. Add dependency to pip-webui-tasks in your package.json file
 
@@ -34,7 +34,7 @@ Using standard build tasks in your projects is pretty easy. There are only 3 sim
 
 ###<a name="step_2"></a> Step 2. Create build configuration
 
-Project build configuration shall be defined in **build.conf.js** file located in the project root folder.
+Project build configuration must be defined in **build.conf.js** file located in the project root folder.
 Typical configuration for your project may look like the sample below:
 
 ```js
@@ -95,13 +95,13 @@ You can always add your own tasks and mix them with the standard ones.
 
 ## <a name="tasks"></a> Tasks Reference
 
-### Build tasks
+### Module build tasks
 
 - **build-html-dev** - Takes HTML files, wraps them into JavScript and adds to $templateCache service
 - **build-html-prod** - Does the same thing as **build-html-dev** and minifies HTML
 - **build-css-dev** - Compiles less scripts into CSS styles. This task uses index less file which references all other less files
 - **build-css-prod** - Does the same thing as **build-css-dev** and minifies CSS
-- **build-ts** - Compiles TypeScript files, adds type defiitions and places resulted .js, .map and .d.ts files into temp folder
+- **build-ts** - Compiles TypeScript files, adds type definitions and places resulted .js, .map and .d.ts files into temp folder
 - **build-js-dev** - Merges all JavaScript files, including wrapped HTML and compiled TypeScript, does annotations, generates .map and places result into dist folder
 - **build-js-prod** - Does the same thing as **build-js-dev** and minifies JavaScript
 - **build-res-dev** - Copies resources and 3rd party libraries
@@ -144,6 +144,20 @@ You can always add your own tasks and mix them with the standard ones.
 - **submodules-tag** - Creates git tags and all submodules
 - **submodules-publish** - Publishes submodules to npm
 
+## App build tasks
+
+- **build-app-html** - Takes HTML files, wraps them into JavScript and adds to $templateCache service
+- **build-app-ts** - Compiles TypeScript files, adds type definitions and places resulted .js, .map and .d.ts files into temp folder
+- **build-app-css** - Compiles less scripts into CSS styles. This task uses index less file which references all other less files
+- **build-app-js** - Merges all JavaScript files, including wrapped HTML and compiled TypeScript, does annotations, generates .map 
+- **copy-app-images** - Copies images to the dist folder
+- **copy-app-lib** - Copies all files from the lib folder (as configured in build.conf.js) to dist folder
+- **copy-app-index** - Copies index.html and config*.js from src folder to dist folder
+- **app-build** - Combines all of the tasks above to produce an application build
+- **app-publish-alpha** - Publishes the dist folder to an AWS bucket, as configured in build.conf.js
+- **app-publish-beta** - Publishes the dist folder to an AWS bucket, as configured in build.conf.js
+- **app-publish-production** - Publishes the dist folder to an AWS bucket, as configured in build.conf.js
+ 
 ## <a name="config"></a> Configuration
 
 Build configuration file is broken into few sections
@@ -192,6 +206,19 @@ Configuration parameters to control samples tasks
   - **accessKeyId**: string - Access key for AWS account
   - **secretAccessKey**: string - Secret access key for AWS account
   - **region**: string - AWS region where S3 bucket is located
+  
+NOTE: for application build, you can specify up to 3 buckets - alpha, beta and production, using the following format:
+
+- **publish**: object - S3 bucket properties for samples publishing
+  - alpha   
+    - **bucket**: string - S3 bucket name
+    - **accessKeyId**: string - Access key for AWS account
+    - **secretAccessKey**: string - Secret access key for AWS account
+    - **region**: string - AWS region where S3 bucket is located
+  - beta
+    - ...
+  - production
+    - ...
 
 ##<a name="api_section"></a> api section
 
