@@ -135,10 +135,7 @@ module.exports = function () {
             distFiles = gulp.src([
                 conf.dir.dist + '**/*',
                 '!' + conf.dir.dist + '**/config*.js',
-                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'})
-                .pipe(rename(function (path) {
-                    path.dirname = '/' + pkg.name + '/' + path.dirname
-                }));
+                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'});
 
         return es.merge([configFiles, distFiles])
             .pipe(parallelize(publisher.publish(), 5))
@@ -164,10 +161,7 @@ module.exports = function () {
             distFiles = gulp.src([
                 conf.dir.dist + '**/*',
                 '!' + conf.dir.dist + '**/config*.js',
-                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'})
-                .pipe(rename(function (path) {
-                    path.dirname = '/' + pkg.name + '/' + path.dirname
-                }));
+                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'});
 
         return es.merge([configFiles, distFiles])
             .pipe(parallelize(publisher.publish(), 5))
@@ -193,10 +187,7 @@ module.exports = function () {
             distFiles = gulp.src([
                 conf.dir.dist + '**/*',
                 '!' + conf.dir.dist + '**/config*.js',
-                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'})
-                .pipe(rename(function (path) {
-                    path.dirname = '/' + pkg.name + '/' + path.dirname
-                }));
+                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'});
 
         return es.merge([configFiles, distFiles])
             .pipe(parallelize(publisher.publish(), 5))
