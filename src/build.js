@@ -121,7 +121,7 @@ module.exports = function () {
     gulp.task('build-css-prod', function () {
         if (!conf.build.css) return;
 
-        return gulp.src(conf.dir.src + conf.module.styles + '.less')
+        return gulp.src(conf.dir.src +  conf.module.styles + '.less')
             .pipe(less())
             .pipe(minifyCss())
             .pipe(concat(pkg.name + '.min.css'))

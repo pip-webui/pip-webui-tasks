@@ -15,6 +15,7 @@ var webserver = require('gulp-webserver');
 var parallelize = require('concurrent-transform');
 var del = require('del');
 var merge = require('merge2');
+var es = require('event-stream');
 
 var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
@@ -125,19 +126,81 @@ module.exports = function () {
                 accessKeyId: conf.app.publish.alpha.accessKeyId,
                 secretAccessKey: conf.app.publish.alpha.secretAccessKey,
                 region: conf.app.publish.alpha.region
-            });
+            }),
 
-        // For now copy everything under dist except a few known files
-        gulp.src([
-            conf.dir.dist + '**/*',
-            '!' + conf.dir.dist + '**/config-beta.*',
-            '!' + conf.dir.dist + '**/config-prod*.*',
-            '!' + conf.dir.dist + '**/*.map'], {xbase: '.'})
-            .pipe(rename(function (path) {
-                path.dirname = '/' + pkg.name + '/' + path.dirname
-            }))
+            configFiles = gulp.src(conf.dir.dist + 'config-alpha.js')
+                .pipe(rename('config.js'))
+                .pipe(gulp.dest(conf.dir.dist)),
+
+            distFiles = gulp.src([
+                conf.dir.dist + '**/*',
+                '!' + conf.dir.dist + '**/config*.js',
+                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'})
+                .pipe(rename(function (path) {
+                    path.dirname = '/' + pkg.name + '/' + path.dirname
+                }));
+
+        return es.merge([configFiles, distFiles])
             .pipe(parallelize(publisher.publish(), 5))
-            .pipe(publisher.sync(pkg.name))
+            .pipe(publisher.sync())
+            .pipe(awspublish.reporter());
+    });
+
+    gulp.task('app-publish-beta', ['app-build'], function () {
+        var
+            publisher = awspublish.create({
+                params: {
+                    Bucket: conf.app.publish.beta.bucket
+                },
+                accessKeyId: conf.app.publish.beta.accessKeyId,
+                secretAccessKey: conf.app.publish.beta.secretAccessKey,
+                region: conf.app.publish.beta.region
+            }),
+
+            configFiles = gulp.src(conf.dir.dist + 'config-beta.js')
+                .pipe(rename('config.js'))
+                .pipe(gulp.dest(conf.dir.dist)),
+
+            distFiles = gulp.src([
+                conf.dir.dist + '**/*',
+                '!' + conf.dir.dist + '**/config*.js',
+                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'})
+                .pipe(rename(function (path) {
+                    path.dirname = '/' + pkg.name + '/' + path.dirname
+                }));
+
+        return es.merge([configFiles, distFiles])
+            .pipe(parallelize(publisher.publish(), 5))
+            .pipe(publisher.sync())
+            .pipe(awspublish.reporter());
+    });
+
+    gulp.task('app-publish-production', ['app-build'], function () {
+        var
+            publisher = awspublish.create({
+                params: {
+                    Bucket: conf.app.publish.production.bucket
+                },
+                accessKeyId: conf.app.publish.production.accessKeyId,
+                secretAccessKey: conf.app.publish.production.secretAccessKey,
+                region: conf.app.publish.production.region
+            }),
+
+            configFiles = gulp.src(conf.dir.dist + 'config-production.js')
+                .pipe(rename('config.js'))
+                .pipe(gulp.dest(conf.dir.dist)),
+
+            distFiles = gulp.src([
+                conf.dir.dist + '**/*',
+                '!' + conf.dir.dist + '**/config*.js',
+                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'})
+                .pipe(rename(function (path) {
+                    path.dirname = '/' + pkg.name + '/' + path.dirname
+                }));
+
+        return es.merge([configFiles, distFiles])
+            .pipe(parallelize(publisher.publish(), 5))
+            .pipe(publisher.sync())
             .pipe(awspublish.reporter());
     });
 
