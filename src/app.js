@@ -128,16 +128,11 @@ module.exports = function () {
                 region: conf.app.publish.alpha.region
             }),
 
-            configFiles = gulp.src(conf.dir.dist + 'config-alpha.js')
-                .pipe(rename('config.js'))
-                .pipe(gulp.dest(conf.dir.dist)),
-
             distFiles = gulp.src([
                 conf.dir.dist + '**/*',
-                '!' + conf.dir.dist + '**/config*.js',
                 '!' + conf.dir.dist + '**/*.map'], {xbase: '.'});
 
-        return es.merge([configFiles, distFiles])
+        return distFiles
             .pipe(parallelize(publisher.publish(), 5))
             .pipe(publisher.sync())
             .pipe(awspublish.reporter());
