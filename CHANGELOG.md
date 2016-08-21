@@ -1,5 +1,13 @@
 # Pip.WebUI.Tasks Changelog
 
+## 1.2.0 (2016-08-21)
+
+Added support for application builds
+
+### Features:
+
+* **app.js**: implemented build tasks for application builds
+
 ## 1.1.0 (2016-08-08)
 
 Added suppport for complex projects with submodules
