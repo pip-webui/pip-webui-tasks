@@ -48,14 +48,14 @@ module.exports = function () {
     function add_android() {
         return function (callback) {
             var command = 'cordova platform add android';
-            return execTask(conf.dir.cordova , command, true)(callback);
+            return execTask(conf.dir.cordova, command, true)(callback);
         };
     }
 
     function add_xwalk() {
         return function (callback) {
             var command = 'cordova plugin add cordova-plugin-crosswalk-webview';
-            return execTask(conf.dir.cordova , command, true)(callback);
+            return execTask(conf.dir.cordova, command, true)(callback);
         };
     }
 
@@ -66,7 +66,7 @@ module.exports = function () {
         };
     }
 
-    gulp.task('cordova-beta-copy', function () {
+    gulp.task('cordova-copy-android-source-beta', function () {
         var
             indexFile = gulp.src(conf.dir.dist + 'index_cordova.html')
                 .pipe(rename('index.html')),
@@ -84,7 +84,7 @@ module.exports = function () {
             .pipe(gulp.dest(conf.dir.cordova + 'www'));
     });
 
-    gulp.task('cordova-production-copy', function () {
+    gulp.task('cordova-copy-android-source-prod', function () {
         var
             indexFile = gulp.src(conf.dir.dist + 'index_cordova.html')
                 .pipe(rename('index.html')),
@@ -118,13 +118,13 @@ module.exports = function () {
     gulp.task('cordova-add-xwalk', add_xwalk());
     gulp.task('cordova-build-android', build_android());
 
-    gulp.task('cordova-beta-build', function (callback) {
-        runSequence('cordova-clean', 'cordova-beta-copy', 'cordova-add-xwalk', 'cordova-add-android', 'cordova-copy-android-config',
-            'cordova-build-android', callback);
+    gulp.task('cordova-build-android-beta', function (callback) {
+        runSequence('cordova-clean', 'cordova-copy-android-source-beta', 'cordova-add-xwalk', 'cordova-add-android',
+            'cordova-copy-android-config', 'cordova-build-android', callback);
     });
 
-    gulp.task('cordova-production-build', function (callback) {
-        runSequence('cordova-clean', 'cordova-production-copy', 'cordova-add-xwalk', 'cordova-add-android', 'cordova-copy-android-config',
-            'cordova-build-android', callback);
+    gulp.task('cordova-build-android-production', function (callback) {
+        runSequence('cordova-clean', 'cordova-copy-android-source-prod', 'cordova-add-xwalk', 'cordova-add-android',
+            'cordova-copy-android-config', 'cordova-build-android', callback);
     });
 };
