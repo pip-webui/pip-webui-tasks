@@ -2,8 +2,10 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var es = require('event-stream');
 var rename = require('gulp-rename');
+var cheerio = require("gulp-cheerio");
 var exec = require('child_process').exec;
 
+var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
 
 module.exports = function () {
@@ -66,7 +68,21 @@ module.exports = function () {
         };
     }
 
-    gulp.task('cordova-copy-android-source-beta', function () {
+    gulp.task('cordova-version', function () {
+        return gulp.src([conf.dir.cordova + 'config.xml'])
+            .pipe(cheerio({
+                run: function ($) {
+                    $('widget').attr('version', pkg.version);
+                },
+                parserOptions: {
+                    xmlMode: true
+                }
+            }))
+            .pipe(gulp.dest(conf.dir.cordova));
+
+    });
+
+    gulp.task('cordova-copy-android-beta', function () {
         var
             indexFile = gulp.src(conf.dir.dist + 'index_cordova.html')
                 .pipe(rename('index.html')),
@@ -84,7 +100,7 @@ module.exports = function () {
             .pipe(gulp.dest(conf.dir.cordova + 'www'));
     });
 
-    gulp.task('cordova-copy-android-source-prod', function () {
+    gulp.task('cordova-copy-android-prod', function () {
         var
             indexFile = gulp.src(conf.dir.dist + 'index_cordova.html')
                 .pipe(rename('index.html')),
@@ -119,12 +135,12 @@ module.exports = function () {
     gulp.task('cordova-build-android', build_android());
 
     gulp.task('cordova-build-android-beta', function (callback) {
-        runSequence('cordova-clean', 'cordova-copy-android-source-beta', 'cordova-add-xwalk', 'cordova-add-android',
+        runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-beta', 'cordova-add-xwalk', 'cordova-add-android',
             'cordova-copy-android-config', 'cordova-build-android', callback);
     });
 
     gulp.task('cordova-build-android-production', function (callback) {
-        runSequence('cordova-clean', 'cordova-copy-android-source-prod', 'cordova-add-xwalk', 'cordova-add-android',
+        runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-prod', 'cordova-add-xwalk', 'cordova-add-android',
             'cordova-copy-android-config', 'cordova-build-android', callback);
     });
 };

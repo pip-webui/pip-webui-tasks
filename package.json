@@ -59,6 +59,7 @@
     "gulp-typescript": "*",
     "gulp-uglify": "*",
     "gulp-webserver": "*",
+    "gulp-cheerio": "*",
     "istanbul": "^0.4.4",
     "karma": "*",
     "karma-chai": "*",
