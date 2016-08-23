@@ -14,7 +14,7 @@ module.exports = {
         lib: './lib/',
         dist: './dist/',
         samples: './samples/',
-        cordova: './cordova/www/',
+        cordova: './cordova/',
         api: './doc/api/'
     },
 

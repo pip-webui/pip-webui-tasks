@@ -26,7 +26,7 @@ module.exports = function () {
         if (!conf.build.html) return;
         return gulp.src([
             conf.dir.src + '**/*.html',
-            '!' + conf.dir.src + 'index.html'
+            '!' + conf.dir.src + 'index*.html'
         ])
             .pipe(minifyHtml({empty: true, quotes: true, spare: true}))
             .pipe(ngHtml2Js({
@@ -73,6 +73,7 @@ module.exports = function () {
         return gulp.src([
             conf.dir.src + '**/*.js',
             '!' + conf.dir.src + 'config*.js',
+            '!' + conf.dir.src + 'cordova*.js',
             conf.dir.temp + pkg.name + '-ts.js'
         ])
             .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
@@ -110,8 +111,9 @@ module.exports = function () {
 
     gulp.task('copy-app-index', function () {
         return gulp.src([
-            conf.dir.src + 'index.html',
-            conf.dir.src + 'config*.js'
+            conf.dir.src + 'index*.html',
+            conf.dir.src + 'config*.js',
+            conf.dir.src + 'cordova*.js'
         ]).pipe(gulp.dest(conf.dir.dist));
     });
 
@@ -149,7 +151,7 @@ module.exports = function () {
                 region: conf.app.publish.beta.region
             }),
 
-            configFiles = gulp.src(conf.dir.dist + 'config-beta.js')
+            configFiles = gulp.src(conf.dir.dist + 'config_beta.js')
                 .pipe(rename('config.js'))
                 .pipe(gulp.dest(conf.dir.dist)),
 
@@ -175,7 +177,7 @@ module.exports = function () {
                 region: conf.app.publish.production.region
             }),
 
-            configFiles = gulp.src(conf.dir.dist + 'config-production.js')
+            configFiles = gulp.src(conf.dir.dist + 'config_production.js')
                 .pipe(rename('config.js'))
                 .pipe(gulp.dest(conf.dir.dist)),
 

@@ -1,5 +1,13 @@
 # Pip.WebUI.Tasks Changelog
 
+## 1.3.0 (2016-08-22)
+
+Added support for Android cordova apps
+
+### Features:
+
+* **cordova.js**: implemented build tasks for Android platform
+
 ## 1.2.0 (2016-08-21)
 
 Added support for application builds
