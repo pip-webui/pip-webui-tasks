@@ -89,6 +89,21 @@ module.exports = function () {
         };
     }
 
+    function build_windows() {
+        return function (callback) {
+            var command = 'cordova build windows --release';
+            return execTask(conf.dir.cordova, command, true)(callback);
+        };
+    }
+
+
+    function build_wp8() {
+        return function (callback) {
+            var command = 'cordova build wp8 --release';
+            return execTask(conf.dir.cordova, command, true)(callback);
+        };
+    }
+
     gulp.task('cordova-version', function () {
         return gulp.src([conf.dir.cordova + 'config.xml'])
             .pipe(cheerio({
@@ -106,6 +121,24 @@ module.exports = function () {
     gulp.task('cordova-copy-android-beta', function () {
         var
             indexFile = gulp.src(conf.dir.dist + 'index_cordova.html')
+                .pipe(rename('index.html')),
+
+            configFile = gulp.src(conf.dir.dist + 'config_beta.js')
+                .pipe(rename('config.js')),
+
+            distFiles = gulp.src([
+                conf.dir.dist + '**/*',
+                '!' + conf.dir.dist + '**/index*.html',
+                '!' + conf.dir.dist + '**/config*.js',
+                '!' + conf.dir.dist + '**/*.map'], {xbase: '.'});
+
+        return es.merge([indexFile, configFile, distFiles])
+            .pipe(gulp.dest(conf.dir.cordova + 'www'));
+    });
+
+    gulp.task('cordova-copy-windows-beta', function () {
+        var
+            indexFile = gulp.src(conf.dir.dist + 'index_windows.html')
                 .pipe(rename('index.html')),
 
             configFile = gulp.src(conf.dir.dist + 'config_beta.js')
@@ -144,6 +177,13 @@ module.exports = function () {
             conf.dir.cordova + '*.jks',
             conf.dir.cordova + 'release-signing.properties'])
             .pipe(gulp.dest(conf.dir.cordova + 'platforms/android'));
+    });
+
+    gulp.task('cordova-copy-ios-config', function () {
+        return gulp.src([
+            conf.dir.cordova + '*.mobileprovision',
+            conf.dir.cordova + 'options.plist'])
+            .pipe(gulp.dest(conf.dir.cordova + 'platforms/ios'));
     });
 
     gulp.task('cordova-clean-www', clean_www());
