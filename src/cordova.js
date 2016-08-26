@@ -54,6 +54,27 @@ module.exports = function () {
         };
     }
 
+    function add_windows() {
+        return function (callback) {
+            var command = 'cordova platform add windows';
+            return execTask(conf.dir.cordova, command, true)(callback);
+        };
+    }
+
+    function add_ios() {
+        return function (callback) {
+            var command = 'cordova platform add windows';
+            return execTask(conf.dir.cordova, command, true)(callback);
+        };
+    }
+
+    function add_wp8() {
+        return function (callback) {
+            var command = 'cordova platform add wp8';
+            return execTask(conf.dir.cordova, command, true)(callback);
+        };
+    }
+
     function add_xwalk() {
         return function (callback) {
             var command = 'cordova plugin add cordova-plugin-crosswalk-webview';
