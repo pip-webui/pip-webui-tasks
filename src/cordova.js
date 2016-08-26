@@ -188,7 +188,8 @@ module.exports = function () {
 
     gulp.task('cordova-copy-ios-icons', function () {
         return gulp.src([
-            conf.dir.cordova + 'AppIcon.appiconset/*.png'])
+            conf.dir.cordova + 'AppIcon.appiconset/*.png',
+            conf.dir.cordova + 'AppIcon.appiconset/Contents.json'])
             .pipe(gulp.dest(conf.dir.cordova + 'platforms/ios/PipLife/Images.xclassets/AppIcon.appiconset'));
     });
 
