@@ -217,4 +217,9 @@ module.exports = function () {
         runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-prod', 'cordova-add-xwalk', 'cordova-add-android',
             'cordova-copy-android-config', 'cordova-build-android', callback);
     });
+
+    gulp.task('cordova-build-windows-beta', function (callback) {
+        runSequence('cordova-clean', 'cordova-version', 'cordova-copy-windows-beta', 'cordova-add-xwalk', 'cordova-add-windows',
+            'cordova-add-wp8', 'cordova-build-wp8', 'cordova-build-windows', callback);
+    });
 };
