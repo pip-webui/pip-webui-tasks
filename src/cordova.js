@@ -104,6 +104,13 @@ module.exports = function () {
         };
     }
 
+    function build_ios() {
+        return function (callback) {
+            var command = "xcodebuild -project PipLife.xcodeproj -scheme PipLife ARCHS='arm64 armv7' VALID_ARCHS='arm64 armv7' -sdk iphoneos -configuration Debug archive -archivePath build/archive PRODUCT_BUNDLE_IDENTIFIER=com.piplife PROVISIONING_PROFILE=d118e82a-3bc8-4697-a062-52d5e43eaf6f";
+            return execTask(conf.dir.cordova + 'platform/ios', command, true)(callback);
+        };
+    }
+
     gulp.task('cordova-version', function () {
         return gulp.src([conf.dir.cordova + 'config.xml'])
             .pipe(cheerio({
@@ -208,6 +215,7 @@ module.exports = function () {
     gulp.task('cordova-build-wp8', build_wp8());
 
     gulp.task('cordova-add-ios', add_ios());
+    gulp.task('cordova-build-ios', build_ios());
 
     gulp.task('cordova-build-android-beta', function (callback) {
         runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-beta', 'cordova-add-xwalk', 'cordova-add-android',
@@ -226,6 +234,6 @@ module.exports = function () {
 
     gulp.task('cordova-build-ios-beta', function (callback) {
         runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-beta', 'cordova-add-xwalk', 'cordova-add-ios',
-            'cordova-copy-ios-config', 'cordova-copy-ios-icons', callback);
+            'cordova-copy-ios-config', 'cordova-copy-ios-icons', 'cordova-copy-ios-ios', callback);
     });
 };
