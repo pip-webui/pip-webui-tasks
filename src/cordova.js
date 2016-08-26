@@ -186,6 +186,12 @@ module.exports = function () {
             .pipe(gulp.dest(conf.dir.cordova + 'platforms/ios'));
     });
 
+    gulp.task('cordova-copy-ios-icons', function () {
+        return gulp.src([
+            conf.dir.cordova + 'AppIcon.appiconset/*.png'])
+            .pipe(gulp.dest(conf.dir.cordova + 'platforms/ios/PipLife/Images.xclassets/AppIcon.appiconset'));
+    });
+
     gulp.task('cordova-clean-www', clean_www());
     gulp.task('cordova-clean-platforms', clean_platforms());
     gulp.task('cordova-clean-plugins', clean_plugins());
