@@ -201,6 +201,13 @@ module.exports = function () {
     gulp.task('cordova-add-xwalk', add_xwalk());
     gulp.task('cordova-build-android', build_android());
 
+    gulp.task('cordova-add-windows', add_windows());
+    gulp.task('cordova-add-wp8', add_wp8());
+    gulp.task('cordova-build-windows', build_windows());
+    gulp.task('cordova-build-wp8', build_wp8());
+
+    gulp.task('cordova-add-ios', add_ios());
+
     gulp.task('cordova-build-android-beta', function (callback) {
         runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-beta', 'cordova-add-xwalk', 'cordova-add-android',
             'cordova-copy-android-config', 'cordova-build-android', callback);
