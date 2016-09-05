@@ -7,6 +7,7 @@ var exec = require('child_process').exec;
 
 var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
+var args = require('yargs').argv;
 
 module.exports = function () {
 
@@ -105,8 +106,14 @@ module.exports = function () {
     }
 
     function build_ios() {
+        args = args || {project: 'PipLife.xcodeproj', scheme: 'PipLife', bundle_id:'com.piplife', provision:'d118e82a-3bc8-4697-a062-52d5e43eaf6f' };
+        args.project = args.project || 'PipLife.xcodeproj';
+        args.scheme = args.scheme || 'PipLife';
+        args.bundle_id = args.bundle_id || 'com.piplife';
+        args.provision = args.provision || 'd118e82a-3bc8-4697-a062-52d5e43eaf6f';
+
         return function (callback) {
-            var command = "xcodebuild -project PipLife.xcodeproj -scheme PipLife ARCHS='arm64 armv7' VALID_ARCHS='arm64 armv7' -sdk iphoneos -configuration Debug archive -archivePath build/archive PRODUCT_BUNDLE_IDENTIFIER=com.piplife PROVISIONING_PROFILE=d118e82a-3bc8-4697-a062-52d5e43eaf6f";
+            var command = "xcodebuild -project "+args.project+" -scheme "+args.scheme+" ARCHS='arm64 armv7' VALID_ARCHS='arm64 armv7' -sdk iphoneos -configuration Debug archive -archivePath build/archive PRODUCT_BUNDLE_IDENTIFIER="+args.bundle_id+" PROVISIONING_PROFILE="+ args.provision;
             return execTask(conf.dir.cordova + 'platform/ios', command, true)(callback);
         };
     }
