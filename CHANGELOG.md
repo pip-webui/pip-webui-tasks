@@ -1,5 +1,10 @@
 # Pip.WebUI.Tasks Changelog
 
+## 1.4.0 (2016-08-22)
+
+Added support for Ios and Windows cordova apps. 
+Add parameters in cordova-build-ios tasks: project, scheme, bundle_id, provision
+
 ## 1.3.0 (2016-08-22)
 
 Added support for Android cordova apps

@@ -114,6 +114,22 @@ You can always add your own tasks and mix them with the standard ones.
 ## Cordova tasks
 
 - **cordova-copy** - Copies content from ./dist folder to cordova www location
+- **cordova-clean-www** - Delete all files in cordova www location
+- **cordova-clean-platforms** - Delete all files in cordova platform location
+- **cordova-clean-plugins** - Delete all files in cordova plugins location
+- **cordova-clean** - Delete all files in cordova location
+- **cordova-add-android** - Add android platform
+- **cordova-add-windows** - Add windows platform
+- **cordova-add-xwalk** - Add cross walk plugin
+- **cordova-add-wp8** - Add platform for windows 8 phone
+- **cordova-add-ios** - Add ios platform
+- **cordova-build-android** - Build android platform
+- **cordova-build-wp8** - Build platform for windows 8 phone
+- **cordova-build-windows** - Build platform for windows
+- **cordova-build-ios** - Build ios platform (You can add parameters: project, scheme, bundle_id, provision)
+- **cordova-copy-android-config** - Copy all .jks files and release-signing.properties file to android platform
+- **cordova-copy-ios-config** - Copy all *.mobileprovision files and options.plist from cordova folder to ios platform folder
+- **cordova-copy-ios-icons** - Copy all *.png files and Contents.json from cordova/AppIcon.appiconset folder to ios platform Images.xclassets/AppIcon.appiconset folder
 
 ## Test tasks
 

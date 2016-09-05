@@ -201,10 +201,13 @@ module.exports = function () {
     });
 
     gulp.task('cordova-copy-ios-icons', function () {
+        args = args || {};
+        args.scheme = args.scheme || 'PipLife';
+        
         return gulp.src([
             conf.dir.cordova + 'AppIcon.appiconset/*.png',
             conf.dir.cordova + 'AppIcon.appiconset/Contents.json'])
-            .pipe(gulp.dest(conf.dir.cordova + 'platforms/ios/PipLife/Images.xclassets/AppIcon.appiconset'));
+            .pipe(gulp.dest(conf.dir.cordova + 'platforms/ios/'+args.scheme+'/Images.xclassets/AppIcon.appiconset'));
     });
 
     gulp.task('cordova-clean-www', clean_www());
