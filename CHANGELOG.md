@@ -1,11 +1,11 @@
 # Pip.WebUI.Tasks Changelog
 
-## 1.4.0 (2016-08-22)
+## 1.4.0
 
 Added support for Ios and Windows cordova apps. 
 Add parameters in cordova-build-ios tasks: project, scheme, bundle_id, provision
 
-## 1.3.0 (2016-08-22)
+## 1.3.0
 
 Added support for Android cordova apps
 
@@ -13,7 +13,7 @@ Added support for Android cordova apps
 
 * **cordova.js**: implemented build tasks for Android platform
 
-## 1.2.0 (2016-08-21)
+## 1.2.0
 
 Added support for application builds
 
@@ -21,7 +21,7 @@ Added support for application builds
 
 * **app.js**: implemented build tasks for application builds
 
-## 1.1.0 (2016-08-08)
+## 1.1.0
 
 Added suppport for complex projects with submodules
 
@@ -29,7 +29,7 @@ Added suppport for complex projects with submodules
 
 * **submodules**: tasks to init project, update versions, checkout, checkin and publish
 
-## 1.1.0 (2016-07-27)
+## 1.1.0
 
 Addressing critical security flaw related to storing AWS inside build.conf file in git.
 Now all keys shall be kept in a separate build.secret.js file that shall never stored in git.  
@@ -51,7 +51,7 @@ Added suppport for application builds.
 No fixes in this version
 
 
-## 1.0.0 (2016-07-25)
+## 1.0.0
 
 Initial release with standard build, test, samples, api and publish tasks
 
