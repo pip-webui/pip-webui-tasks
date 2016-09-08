@@ -135,6 +135,11 @@ module.exports = function () {
                 '!' + conf.dir.dist + '**/*.map'], {xbase: '.'});
 
         return distFiles
+            .pipe(rename(function (path) {
+                if(conf.dir.publish && conf.dir.publish != '') {
+                    path.dirname = '/' + conf.dir.publish + '/' + path.dirname
+                }
+            }))        
             .pipe(parallelize(publisher.publish(), 5))
             .pipe(publisher.sync())
             .pipe(awspublish.reporter());
@@ -161,6 +166,11 @@ module.exports = function () {
                 '!' + conf.dir.dist + '**/*.map'], {xbase: '.'});
 
         return es.merge([configFiles, distFiles])
+            .pipe(rename(function (path) {
+                if(conf.dir.publish && conf.dir.publish != '') {
+                    path.dirname = '/' + conf.dir.publish + '/' + path.dirname;
+                }
+            }))        
             .pipe(parallelize(publisher.publish(), 5))
             .pipe(publisher.sync())
             .pipe(awspublish.reporter());
@@ -187,6 +197,11 @@ module.exports = function () {
                 '!' + conf.dir.dist + '**/*.map'], {xbase: '.'});
 
         return es.merge([configFiles, distFiles])
+            .pipe(rename(function (path) {
+                if(conf.dir.publish && conf.dir.publish != '') {
+                    path.dirname = '/' + conf.dir.publish + '/' + path.dirname;
+                }
+            }))        
             .pipe(parallelize(publisher.publish(), 5))
             .pipe(publisher.sync())
             .pipe(awspublish.reporter());

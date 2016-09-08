@@ -15,7 +15,8 @@ module.exports = {
         dist: './dist/',
         samples: './samples/',
         cordova: './cordova/',
-        api: './doc/api/'
+        api: './doc/api/',
+        publish: ''
     },
 
     file: {

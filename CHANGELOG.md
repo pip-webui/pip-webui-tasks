@@ -1,9 +1,21 @@
 # Pip.WebUI.Tasks Changelog
 
+##1.5.0
+
+Added publish folder name configuration to allow publishing of apps to subfolders on s3
+
+### Features
+
+* **app.js**: Added configurable folder name to publish tasks
+
 ## 1.4.0
 
-Added support for Ios and Windows cordova apps. 
-Add parameters in cordova-build-ios tasks: project, scheme, bundle_id, provision
+Added support for iOS and Windows cordova apps
+
+### Features:
+
+* **cordova.js**: added support for Ios and Windows cordova apps. 
+* **cordova.js**: adedd parameters in cordova-build-ios tasks: project, scheme, bundle_id, provision
 
 ## 1.3.0
 
