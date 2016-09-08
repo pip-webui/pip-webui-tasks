@@ -141,7 +141,7 @@ module.exports = function () {
                 }
             }))        
             .pipe(parallelize(publisher.publish(), 5))
-            .pipe(publisher.sync())
+            .pipe(publisher.sync(conf.dir.publish))
             .pipe(awspublish.reporter());
     });
 
@@ -172,7 +172,7 @@ module.exports = function () {
                 }
             }))        
             .pipe(parallelize(publisher.publish(), 5))
-            .pipe(publisher.sync())
+            .pipe(publisher.sync(conf.dir.publish))
             .pipe(awspublish.reporter());
     });
 
@@ -203,7 +203,7 @@ module.exports = function () {
                 }
             }))        
             .pipe(parallelize(publisher.publish(), 5))
-            .pipe(publisher.sync())
+            .pipe(publisher.sync(conf.dir.publish))
             .pipe(awspublish.reporter());
     });
 
