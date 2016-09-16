@@ -232,6 +232,11 @@ module.exports = function () {
             'cordova-copy-android-config', 'cordova-build-android', callback);
     });
 
+    gulp.task('cordova-build-android-beta-without-crosswalk', function (callback) {
+        runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-beta', 'cordova-add-android',
+            'cordova-copy-android-config', 'cordova-build-android', callback);
+    });
+
     gulp.task('cordova-build-android-production', function (callback) {
         runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-prod', 'cordova-add-xwalk', 'cordova-add-android',
             'cordova-copy-android-config', 'cordova-build-android', callback);
