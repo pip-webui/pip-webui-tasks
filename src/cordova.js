@@ -64,7 +64,7 @@ module.exports = function () {
 
     function add_ios() {
         return function (callback) {
-            var command = 'cordova platform add windows';
+            var command = 'cordova platform add ios';
             return execTask(conf.dir.cordova, command, true)(callback);
         };
     }
