@@ -249,6 +249,6 @@ module.exports = function () {
 
     gulp.task('cordova-build-ios-beta', function (callback) {
         runSequence('cordova-clean', 'cordova-version', 'cordova-copy-android-beta', 'cordova-add-xwalk', 'cordova-add-ios',
-            'cordova-copy-ios-config', 'cordova-copy-ios-icons', 'cordova-copy-ios-ios', callback);
+            'cordova-copy-ios-config', 'cordova-copy-ios-icons', callback);
     });
 };
