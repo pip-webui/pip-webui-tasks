@@ -43,6 +43,7 @@ module.exports = {
 
     app: {
         port: 8000,
+        https: true,
         publish: {
             alpha: {
                 bucket: 'my_app_bucket',
@@ -67,6 +68,7 @@ module.exports = {
 
     samples: {
         port: 8000,
+        https: true,
         publish: {
             bucket: 'my_samples_bucket',
             accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
@@ -77,6 +79,7 @@ module.exports = {
 
     api: {
         port: 8008,
+        https: false,
         publish: {
             bucket: 'my_api_bucket',
             accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',

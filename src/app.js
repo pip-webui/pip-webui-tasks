@@ -208,12 +208,15 @@ module.exports = function () {
     });
 
     gulp.task('app-launch', function () {
+        var protocol = conf.samples.https ? "https" : "http";
+
         gulp.src(['.'])
             .pipe(webserver({
                 port: conf.app.port,
+                https: conf.app.https,
                 //livereload: false,
                 //directoryListing: false,
-                open: 'http://localhost:' + conf.app.port + '/' + conf.dir.dist + 'index.html'
+                open: protocol + '://localhost:' + conf.app.port + '/' + conf.dir.dist + 'index.html'
             }));
     });
 

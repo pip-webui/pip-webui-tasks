@@ -58,6 +58,7 @@ module.exports = {
     }
     samples: {
         port: 8099,
+        https: true,
         publish: {
             bucket: 'my_backet',
             accessKeyId: 'XXXXXXXXXXXXXXXXXX',

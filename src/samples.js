@@ -56,12 +56,15 @@ module.exports = function () {
     });
 
     gulp.task('samples-launch', function () {
+        var protocol = conf.samples.https ? "https" : "http";
+
         gulp.src(['.'])
             .pipe(webserver({
                 port: conf.samples.port,
+                https: conf.samples.https,
                 //livereload: false,
                 //directoryListing: false,
-                open: 'http://localhost:' + conf.samples.port + '/' + conf.dir.samples + 'index.html'
+                open: protocol + '://localhost:' + conf.samples.port + '/' + conf.dir.samples + 'index.html'
             }));
     });
 };

@@ -1,5 +1,14 @@
 # Pip.WebUI.Tasks Changelog
 
+##1.6.0
+
+Enhanced security in developed applications
+
+### Features
+
+* **samples.js**: Added HTTPS switch (enabled by default)
+* **app.js**: Added HTTPS switch (enabled by default)
+
 ##1.5.0
 
 Added publish folder name configuration to allow publishing of apps to subfolders on s3

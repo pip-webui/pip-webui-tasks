@@ -39,7 +39,8 @@ module.exports = function () {
     gulp.task('api-connect', function() {
         connect.server({
             root: conf.dir.api,
-            port: conf.api.port
+            port: conf.api.port,
+            https: conf.api.https
         });
     });
 
