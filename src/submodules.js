@@ -1,5 +1,4 @@
 var fs = require('fs');
-var gulp = require('gulp');
 var async = require('async');
 var exec = require('child_process').exec;
 
@@ -7,7 +6,7 @@ var argv = require('minimist')(process.argv.slice(2));
 var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
 
-module.exports = function () {
+module.exports = function (gulp) {
 
     function execTask(cwd, command, force) {
         return function(callback) {            

@@ -1,4 +1,3 @@
-var gulp = require('gulp');
 var ngdocs = require('gulp-ngdocs');
 var runSequence = require('run-sequence');
 var connect = require('gulp-connect');
@@ -12,7 +11,7 @@ var parallelize = require('concurrent-transform');
 var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
 
-module.exports = function () {
+module.exports = function (gulp) {
 
     gulp.task('api-generate', function () {
         var options = {

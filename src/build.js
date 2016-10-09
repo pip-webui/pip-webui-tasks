@@ -1,4 +1,3 @@
-var gulp = require('gulp');
 var concat = require('gulp-concat');
 var ts = require('gulp-typescript');
 var less = require('gulp-less');
@@ -16,7 +15,7 @@ var merge = require('merge2');
 var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
 
-module.exports = function () {
+module.exports = function (gulp) {
 
     gulp.task('build-html-dev', function () {
         if (!conf.build.html) return;

@@ -1,11 +1,10 @@
-var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var lesshint = require('gulp-lesshint');
 var Server = require('karma').Server;
 
 var conf = require('./config');
 
-module.exports = function () {
+module.exports = function (gulp) {
 
     gulp.task('test-jslint', function () {
         return gulp.src('./src/**/*.js')

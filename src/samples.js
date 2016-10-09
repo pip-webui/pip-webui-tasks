@@ -1,4 +1,3 @@
-var gulp = require('gulp');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var es = require('event-stream');
@@ -9,7 +8,7 @@ var parallelize = require('concurrent-transform');
 var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
 
-module.exports = function () {
+module.exports = function (gulp) {
 
     gulp.task('samples-publish', function () {
         var

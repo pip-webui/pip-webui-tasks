@@ -1,4 +1,3 @@
-var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var es = require('event-stream');
 var rename = require('gulp-rename');
@@ -9,7 +8,7 @@ var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
 var args = require('yargs').argv;
 
-module.exports = function () {
+module.exports = function (gulp) {
 
     function execTask(cwd, command, force) {
         return function (callback) {

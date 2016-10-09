@@ -1,5 +1,11 @@
 # Pip.WebUI.Tasks Changelog
 
+##1.6.1
+
+### Breaking Changes
+
+* Added explicit gulp reference to all modules to fix issue with multiple gulp installations that don't see each other 
+
 ##1.6.0
 
 Enhanced security in developed applications

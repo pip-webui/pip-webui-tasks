@@ -1,6 +1,6 @@
 {
   "name": "pip-webui-tasks",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "author": "Digital Living Software Corp. <www.digitallivingsoftware.com>",
   "description": "Build tasks for Pip.WebUI projects",
   "contributors": [

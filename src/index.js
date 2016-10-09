@@ -6,14 +6,14 @@ var test = require('./test');
 var api = require('./api');
 var submodules = require('./submodules');
 
-function all() {
-    build();
-    app();
-    samples();
-    cordova();
-    test();
-    api();
-    submodules();
+function all(gulp) {
+    build(gulp);
+    app(gulp);
+    samples(gulp);
+    cordova(gulp);
+    test(gulp);
+    api(gulp);
+    submodules(gulp);
 }
 
 module.exports = all;

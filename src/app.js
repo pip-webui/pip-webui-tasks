@@ -1,4 +1,3 @@
-var gulp = require('gulp');
 var concat = require('gulp-concat');
 var ts = require('gulp-typescript');
 var less = require('gulp-less');
@@ -20,7 +19,7 @@ var es = require('event-stream');
 var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
 
-module.exports = function () {
+module.exports = function (gulp) {
 
     gulp.task('build-app-html', function () {
         if (!conf.build.html) return;
