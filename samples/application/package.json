@@ -1,0 +1,9 @@
+{
+    "name": "pip-webui-app-sample",
+    "version": "1.0.0",
+    "description": "Application Sample",
+    "dependencies": {},
+    "devDependencies": {
+        "pip-webui-all": "^1.0.0"
+    }
+}

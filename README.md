@@ -63,7 +63,8 @@ module.exports = {
             bucket: 'my_backet',
             accessKeyId: 'XXXXXXXXXXXXXXXXXX',
             secretAccessKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            region: 'us-west-1'
+            region: 'us-west-1',
+            folder: 'mySample'
         },
     }
 };
@@ -77,7 +78,7 @@ The main purpose of **gulpfile.js" is to expose standard tasks for the build pro
 var gulp = require('gulp');
 
 // Add standard tasks
-require('./tasks').all();
+require('./tasks').all(gulp);
 
 // Define build tasks
 gulp.task('build', ['build-dev', 'build-prod']);
@@ -141,7 +142,7 @@ You can always add your own tasks and mix them with the standard ones.
 ## Samples tasks
 
 - **samples-launch** - Launches web-server and web-browser to access samples
-- **samples-publish** - Publishes samples to S3-based static website
+- **samples-publish** - Publishes samples to AWS S3 bucket or Azure blob container
 
 ## API tasks
 
@@ -163,17 +164,9 @@ You can always add your own tasks and mix them with the standard ones.
 
 ## App build tasks
 
-- **build-app-html** - Takes HTML files, wraps them into JavScript and adds to $templateCache service
-- **build-app-ts** - Compiles TypeScript files, adds type definitions and places resulted .js, .map and .d.ts files into temp folder
-- **build-app-css** - Compiles less scripts into CSS styles. This task uses index less file which references all other less files
-- **build-app-js** - Merges all JavaScript files, including wrapped HTML and compiled TypeScript, does annotations, generates .map 
-- **copy-app-images** - Copies images to the dist folder
-- **copy-app-lib** - Copies all files from the lib folder (as configured in build.conf.js) to dist folder
-- **copy-app-index** - Copies index.html and config*.js from src folder to dist folder
-- **app-build** - Combines all of the tasks above to produce an application build
-- **app-publish-alpha** - Publishes the dist folder to an AWS bucket, as configured in build.conf.js
-- **app-publish-beta** - Publishes the dist folder to an AWS bucket, as configured in build.conf.js
-- **app-publish-production** - Publishes the dist folder to an AWS bucket, as configured in build.conf.js
+- **app-publish-alpha** - Publishes the dist folder to AWS S3 bucket or Azure blob container, as configured in build.conf.js
+- **app-publish-beta** - Publishes the dist folder to AWS S3 bucket or Azure blob container, as configured in build.conf.js
+- **app-publish-prod** - Publishes the dist folder to AWS S3 bucket or Azure blob container, as configured in build.conf.js
  
 ## <a name="config"></a> Configuration
 
@@ -219,10 +212,15 @@ Configuration parameters to control the build process
 Configuration parameters to control samples tasks
 - **port**: number - Launched web server port (default: 8000)
 - **publish**: object - S3 bucket properties for samples publishing
+  - **type**: stirng - 'aws' or 'azure'
   - **bucket**: string - S3 bucket name
   - **accessKeyId**: string - Access key for AWS account
   - **secretAccessKey**: string - Secret access key for AWS account
   - **region**: string - AWS region where S3 bucket is located
+  - **container**: string - Azure blob container name
+  - **account**: string - Azure storage account name
+  - **key**: string - Azure access key
+  - **folder**: string - optional folder to upload 
   
 NOTE: for application build, you can specify up to 3 buckets - alpha, beta and production, using the following format:
 
@@ -242,10 +240,15 @@ NOTE: for application build, you can specify up to 3 buckets - alpha, beta and p
 Configuration parameters for API documentation generation tasks
 - **port**: number - Launched web server port (default: 8008)
 - **publish**: object - S3 bucket properties for api documentation publishing
+  - **type**: stirng - 'aws' or 'azure'
   - **bucket**: string - S3 bucket name
   - **accessKeyId**: string - Access key for AWS account
   - **secretAccessKey**: string - Secret access key for AWS account
   - **region**: string - AWS region where S3 bucket is located
+  - **container**: string - Azure blob container name
+  - **account**: string - Azure storage account name
+  - **key**: string - Azure access key
+  - **folder**: string - optional folder to upload 
 
 ##<a name="eslint_section"></a> eslint section
 

@@ -75,8 +75,8 @@ module.exports = function (gulp) {
                 },
                 parentTask('git submodule init'),
                 parentTask('git submodule update --remote'),
-                submodulesTask('git checkout master'),
-                submodulesTask('git pull origin master')
+                submodulesTask('git checkout ' + conf.module.branch),
+                submodulesTask('git pull origin ' + conf.module.branch)
             ], callback);
         };        
     }
@@ -123,8 +123,8 @@ module.exports = function (gulp) {
     function checkout() {
         return function(callback) {
             async.series([
-                parentTask('git pull origin master'),
-                submodulesTask('git pull origin master')
+                parentTask('git pull origin ' + conf.module.branch),
+                submodulesTask('git pull origin ' + conf.module.branch)
             ], callback);
         }        
     }

@@ -1,0 +1,20 @@
+{
+    "name": "pip-webui-core-sample",
+    "version": "1.0.0",
+    "author": "Digital Living Software Corp. <www.digitallivingsoftware.com>",
+    "description": "Core services for Pip.WebUI",
+    "contributors": [],
+    "keywords": [
+        "pip",
+        "webui",
+        "services",
+        "filters"
+    ],
+    "noAnalyze": true,
+    "license": "MIT",
+    "private": false,
+    "dependencies": {
+        "pip-webui-lib": "*"
+    },
+    "devDependencies": {}
+}

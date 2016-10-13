@@ -1,3 +1,4 @@
+var gulp = require('gulp');
 var build = require('./build');
 var app = require('./app');
 var samples = require('./samples');
@@ -17,6 +18,7 @@ function all(gulp) {
 }
 
 module.exports = all;
+module.exports.gulp = gulp;
 module.exports.build = build,
 module.exports.app = app,
 module.exports.samples = samples;

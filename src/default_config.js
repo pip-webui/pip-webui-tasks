@@ -3,7 +3,8 @@ module.exports = {
         name: 'pipModule',
         index: 'index',
         styles: 'styles',
-        prefix: ''
+        prefix: '',
+        branch: 'master'
     },
 
     dir: {
@@ -15,8 +16,7 @@ module.exports = {
         dist: './dist/',
         samples: './samples/',
         cordova: './cordova/',
-        api: './doc/api/',
-        publish: ''
+        api: './doc/api/'
     },
 
     file: {
@@ -46,22 +46,28 @@ module.exports = {
         https: true,
         publish: {
             alpha: {
+                type: 'aws',
                 bucket: 'my_app_bucket',
                 accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
                 secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-                region: 'us-west-1'
+                region: 'us-west-1',
+                folder: ''
             },
             beta: {
+                type: 'aws',
                 bucket: 'my_app_bucket',
                 accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
                 secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-                region: 'us-west-1'
+                region: 'us-west-1',
+                folder: ''
             },
-            production: {
+            prod: {
+                type: 'aws',
                 bucket: 'my_app_bucket',
                 accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
                 secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-                region: 'us-west-1'
+                region: 'us-west-1',
+                folder: ''
             }
         }
     },
@@ -70,10 +76,12 @@ module.exports = {
         port: 8000,
         https: true,
         publish: {
+            type: 'aws',
             bucket: 'my_samples_bucket',
             accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
             secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-            region: 'us-west-1'
+            region: 'us-west-1',
+            folder: null
         }
     },
 
@@ -84,7 +92,8 @@ module.exports = {
             bucket: 'my_api_bucket',
             accessKeyId: 'XXXXXXXXXXXXXXXXXXXX',
             secretAccessKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-            region: 'us-west-1'
+            region: 'us-west-1',
+            folder: ''
         }
     },
 

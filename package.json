@@ -1,6 +1,6 @@
 {
   "name": "pip-webui-tasks",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "author": "Digital Living Software Corp. <www.digitallivingsoftware.com>",
   "description": "Build tasks for Pip.WebUI projects",
   "contributors": [
@@ -28,6 +28,14 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "azure-storage": "*",
+    "queue": "*",
+    "progress": "*",
+    "vinyl-fs": "*",
+    "streamifier": "*",
+    "mime": "*",
+
+    "typescript": "*",
     "async": "*",
     "minimist": "*",
     "angular-mocks": "*",

@@ -1,3 +1,4 @@
+var runSequence = require('run-sequence');
 var concat = require('gulp-concat');
 var ts = require('gulp-typescript');
 var less = require('gulp-less');
@@ -9,7 +10,6 @@ var sourceMaps = require('gulp-sourcemaps');
 var ngHtml2Js = require('gulp-ng-html2js');
 var addsrc = require('gulp-add-src');
 var del = require('del');
-var runSequence = require('run-sequence');
 var merge = require('merge2');
 
 var pkg = require(process.cwd() + '/package.json');
@@ -21,31 +21,33 @@ module.exports = function (gulp) {
         if (!conf.build.html) return;
 
         return gulp.src([
-            conf.dir.src + '**/*.html'
+            conf.dir.src + '**/*.html',
+            '!' + conf.dir.src + 'index*.html'
         ])
-            .pipe(ngHtml2Js({
-                moduleName: conf.module.name + '.Templates',
-                prefix: conf.module.prefix,
-                declareModule: true
-            }))
-            .pipe(concat(pkg.name + '-html.js'))
-            .pipe(gulp.dest(conf.dir.temp));
+        .pipe(ngHtml2Js({
+            moduleName: conf.module.name + '.Templates',
+            prefix: conf.module.prefix,
+            declareModule: true
+        }))
+        .pipe(concat(pkg.name + '-html.js'))
+        .pipe(gulp.dest(conf.dir.temp));
     });
 
     gulp.task('build-html-prod', function () {
         if (!conf.build.html) return;
 
         return gulp.src([
-            conf.dir.src + '**/*.html'
+            conf.dir.src + '**/*.html',
+            '!' + conf.dir.src + 'index*.html'
         ])
-            .pipe(minifyHtml({empty: true, quotes: true, spare: true}))
-            .pipe(ngHtml2Js({
-                moduleName: conf.module.name + '.Templates',
-                prefix: conf.module.prefix,
-                declareModule: true
-            }))
-            .pipe(concat(pkg.name + '-html.min.js'))
-            .pipe(gulp.dest(conf.dir.temp));
+        .pipe(minifyHtml({empty: true, quotes: true, spare: true}))
+        .pipe(ngHtml2Js({
+            moduleName: conf.module.name + '.Templates',
+            prefix: conf.module.prefix,
+            declareModule: true
+        }))
+        .pipe(concat(pkg.name + '-html.min.js'))
+        .pipe(gulp.dest(conf.dir.temp));
     });
 
     gulp.task('build-ts', function () {
@@ -82,14 +84,16 @@ module.exports = function (gulp) {
 
         return gulp.src([
             conf.dir.src + '**/*.js',
+            '!' + conf.dir.src + 'config*.js',
+            '!' + conf.dir.src + 'cordova*.js',
             conf.dir.temp + pkg.name + '-ts.js'
         ])
-            .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
-            .pipe(addsrc(conf.dir.temp + pkg.name + '-html.js'))
-            .pipe(sourceMaps.init({loadMaps: true}))
-            .pipe(concat(pkg.name + '.js'))
-            .pipe(sourceMaps.write('.'))
-            .pipe(gulp.dest(conf.dir.dist));
+        .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
+        .pipe(addsrc(conf.dir.temp + pkg.name + '-html.js'))
+        .pipe(sourceMaps.init({loadMaps: true}))
+        .pipe(concat(pkg.name + '.js'))
+        .pipe(sourceMaps.write('.'))
+        .pipe(gulp.dest(conf.dir.dist));
     });
 
     gulp.task('build-js-prod', ['build-html-prod', 'build-ts'], function () {
@@ -97,15 +101,17 @@ module.exports = function (gulp) {
 
         return gulp.src([
             conf.dir.src + '**/*.js',
+            '!' + conf.dir.src + 'config*.js',
+            '!' + conf.dir.src + 'cordova*.js',
             conf.dir.temp + pkg.name + '-ts.js'
         ])
-            .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
-            .pipe(addsrc(conf.dir.temp + pkg.name + '-html.min.js'))
-            //.pipe(sourceMaps.init({ loadMaps: true }))
-            .pipe(concat(pkg.name + '.min.js'))
-            .pipe(minifyJs())
-            //.pipe(sourceMaps.write('.'))
-            .pipe(gulp.dest(conf.dir.dist));
+        .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
+        .pipe(addsrc(conf.dir.temp + pkg.name + '-html.min.js'))
+        //.pipe(sourceMaps.init({ loadMaps: true }))
+        .pipe(concat(pkg.name + '.min.js'))
+        .pipe(minifyJs())
+        //.pipe(sourceMaps.write('.'))
+        .pipe(gulp.dest(conf.dir.dist));
     });
 
     gulp.task('build-css-dev', function () {
@@ -145,8 +151,16 @@ module.exports = function (gulp) {
             .pipe(gulp.dest(conf.dir.samples));
     });
 
-    gulp.task('build-res-dev', ['copy-images']);
-    gulp.task('build-res-prod', ['copy-images']);
+    gulp.task('copy-index', function () {
+        return gulp.src([
+            conf.dir.src + 'index*.html',
+            conf.dir.src + 'config*.js',
+            conf.dir.src + 'cordova*.js'
+        ]).pipe(gulp.dest(conf.dir.dist));
+    });
+
+    gulp.task('build-res-dev', ['copy-images', 'copy-index']);
+    gulp.task('build-res-prod', ['copy-images', 'copy-index']);
 
     gulp.task('copy-dist', function () {
         if (!conf.build.dist) return;
@@ -176,4 +190,3 @@ module.exports = function (gulp) {
     });
 
 };
-    

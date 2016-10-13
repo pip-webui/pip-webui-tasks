@@ -1,5 +1,12 @@
 # Pip.WebUI.Tasks Changelog
 
+##1.7.0
+
+### Features
+* **samples**: added samples for applications and modules
+* **app.js**: split build and dev builds. cleaned up task names
+* **publish**: added ability to upload to Azure temp blob storage
+
 ##1.6.1
 
 ### Breaking Changes
