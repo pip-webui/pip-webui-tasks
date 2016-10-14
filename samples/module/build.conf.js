@@ -18,14 +18,7 @@ module.exports = {
         ]
     },
     samples: {
-        port: 8040,
-        publish: {
-            type: 'azure',
-            account: 'bootbarn',
-            key: 'v2kj6jjam4IDc5I1aaWiNSjd9mZ6FSz5iqAh9sa8tP3Suk4Big+Xr50tmY15aHdTk8eto9nQwblUZOjUC0Mkwg==',
-            container: 'testsite',
-            folder: ''
-        }
+        port: 8040
     },
     api: {
         port: 8041
