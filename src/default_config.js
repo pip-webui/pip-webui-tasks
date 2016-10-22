@@ -41,6 +41,13 @@ module.exports = {
         dist: true
     },
 
+    typescript: {
+        noImplicitAny: false,
+        declaration: true,
+        removeComments: true,
+        target: 'ES5'
+    },
+
     app: {
         port: 8000,
         https: true,

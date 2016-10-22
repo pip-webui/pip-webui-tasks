@@ -59,14 +59,7 @@ module.exports = function (gulp) {
 
         var tsResult = gulp.src(tsFiles)
             .pipe(sourceMaps.init())
-            .pipe(ts({
-                noImplicitAny: true,
-                noExternalResolve: true,
-                declaration: true,
-                sortOutput: true,
-                allowJs: true,
-                target: 'ES5'
-            }));
+            .pipe(ts(conf.typescript));
 
         return merge([
             tsResult.dts

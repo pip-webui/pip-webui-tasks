@@ -1,0 +1,15 @@
+{
+  "name": "pip-webui-app-sample",
+  "version": "1.0.0",
+  "description": "Application Sample",
+  "dependencies": {
+    "@types/angular": "^1.5.16",
+    "@types/angular-material": "^1.1.39",
+    "@types/angular-ui-router": "^1.1.34",
+    "@types/core-js": "^0.9.34",
+    "@types/lodash": "^4.14.37"
+  },
+  "devDependencies": {
+    "pip-webui-all": "^1.0.0"
+  }
+}
