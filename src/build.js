@@ -11,6 +11,7 @@ var ngHtml2Js = require('gulp-ng-html2js');
 var addsrc = require('gulp-add-src');
 var del = require('del');
 var merge = require('merge2');
+var replace = require('gulp-replace');
 
 var pkg = require(process.cwd() + '/package.json');
 var conf = require('./config');
@@ -63,6 +64,7 @@ module.exports = function (gulp) {
 
         return merge([
             tsResult.dts
+                .pipe(replace(/\/\/\/.*<reference.*>/gi, ''))
                 .pipe(concat(pkg.name + '.d.ts'))
                 .pipe(gulp.dest(conf.dir.dist)),
             tsResult.js

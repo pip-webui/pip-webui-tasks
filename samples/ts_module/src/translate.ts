@@ -18,7 +18,7 @@
         }
     });
 
-    thisModule.provider('pipTranslate', function(pipAssertProvider) {
+    thisModule.provider('pipTranslate', function(pipAssertProvider): any {
         var 
             language = 'en',
             persist = true,
@@ -280,7 +280,7 @@
                 key1: '@pipTranslate',
                 key2: '@key'
             },
-            link: function (scope, element, attrs) {
+            link: function (scope: any, element, attrs) {
                 var key = scope.key1 || scope.key2;
                 var value = pipTranslate.translate(key);
                 element.text(value);
@@ -296,7 +296,7 @@
                 key1: '@pipTranslateHtml',
                 key2: '@key'
             },
-            link: function (scope, element, attrs) {
+            link: function (scope: any, element, attrs) {
                 var key = scope.key1 || scope.key2;
                 var value = pipTranslate.translate(key);
                 element.html(value);
