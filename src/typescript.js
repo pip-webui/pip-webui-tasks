@@ -51,7 +51,7 @@ module.exports = function (gulp) {
         if (conf.module.export) {
             file = file.pipe(insert.wrap(
                 'module ' + conf.module.export + ' {\n\r',
-                '\n\r' + '}'
+                '\n\r}\n\r'
             ));
         }
 
