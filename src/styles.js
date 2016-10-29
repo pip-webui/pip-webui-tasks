@@ -9,16 +9,16 @@ var conf = require('./config');
 
 module.exports = function (gulp) {
 
-    // gulp.task('build-less-dev', function () {
-    //     if (!conf.build.css && !conf.build.less) return;
+    gulp.task('build-less-dev', function () {
+        if (!conf.build.css && !conf.build.less) return;
 
-    //     return gulp.src(conf.dir.src + conf.module.styles + '.less')
-    //         .pipe(less())
-    //         .pipe(concat(pkg.name + '.css'))
-    //         .pipe(gulp.dest(conf.dir.dist));
-    // });
+        return gulp.src(conf.dir.src + conf.module.styles + '.less')
+            .pipe(less())
+            .pipe(concat(pkg.name + '.css'))
+            .pipe(gulp.dest(conf.dir.dist));
+    });
 
-    gulp.task('build-less', function () {
+    gulp.task('build-less-prod', function () {
         if (!conf.build.css && !conf.build.less) return;
 
         return gulp.src(conf.dir.src +  conf.module.styles + '.less')
@@ -28,7 +28,18 @@ module.exports = function (gulp) {
             .pipe(gulp.dest(conf.dir.dist));
     });
 
-    gulp.task('build-sass', function () {
+    gulp.task('build-sass-dev', function () {
+        if (!conf.build.sass) return;
+
+        return gulp.src(conf.dir.src +  conf.module.styles + '.scss')
+            .pipe(sourcemaps.init())
+            .pipe(sass())
+            .pipe(concat(pkg.name + '.css'))
+            .pipe(sourcemaps.write('.'))
+            .pipe(gulp.dest(conf.dir.dist));
+    });
+
+    gulp.task('build-sass-prod', function () {
         if (!conf.build.sass) return;
 
         return gulp.src(conf.dir.src +  conf.module.styles + '.scss')

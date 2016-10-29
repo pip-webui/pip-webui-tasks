@@ -15,17 +15,12 @@ module.exports = function (gulp) {
     require('./copy')(gulp);
 
     gulp.task('build-dev', function (callback) {
-        runSequence(['build-js', 'build-tsd', 'build-bundle', 'build-less', 'build-sass', 'build-lib', 'build-res'], 'build-dist',
+        runSequence(['build-js-dev', 'build-tsd', 'build-bundle-dev', 'build-less-dev', 'build-sass-dev', 'build-lib', 'build-res'], 'build-dist',
             callback);
     });
 
     gulp.task('build-prod', function (callback) {
-        runSequence(['build-js', 'build-tsd', 'build-bundle', 'build-less', 'build-sass', 'build-lib', 'build-res'], 'build-dist',
-            callback);
-    });
-
-    gulp.task('build-all', function (callback) {
-        runSequence(['build-js', 'build-tsd', 'build-bundle', 'build-less', 'build-sass', 'build-lib', 'build-res'], 'build-dist',
+        runSequence(['build-js-prod', 'build-tsd', 'build-bundle-prod', 'build-less-prod', 'build-sass-prod', 'build-lib', 'build-res'], 'build-dist',
             callback);
     });
 

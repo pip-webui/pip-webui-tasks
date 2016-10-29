@@ -15,7 +15,12 @@ var conf = require('./config');
 
 module.exports = function (gulp) {
 
-    gulp.task('build-bundle', ['build-html'], function () {
+    function noop() {
+        // just pass-through anything
+        return through.obj();
+    }
+
+    function buildBundle(production) {
         if (!conf.build.bundle) return;
 
         if (conf.build.js)
@@ -23,20 +28,23 @@ module.exports = function (gulp) {
         if (conf.build.ts)
             throw Error("Cannot user build.bundle option together with build.ts")
 
+        var suffix = production ? '.min' : '';
+        var compress = production ? uglify : noop;
+
         // gulp expects tasks to return a stream, so we create one here.
         var bundledStream = through();
 
         bundledStream
             // turns the output bundle stream into a stream containing
             // the normal attributes gulp plugins expect.
-            .pipe(source(pkg.name + '.min.js'))
+            .pipe(source(pkg.name + suffix + '.js'))
             // the rest of the gulp task, as you would normally write it.
             // here we're copying from the Browserify + Uglify2 recipe.
             .pipe(buffer())
             .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
             .pipe(sourcemaps.init({loadMaps: true}))
             // Add gulp plugins to the pipeline here.
-            .pipe(uglify())
+            .pipe(compress())
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(conf.dir.dist));
 
@@ -46,7 +54,7 @@ module.exports = function (gulp) {
             [
                 conf.dir.src + '**/*.js',
                 conf.dir.src + '**/*.ts',
-                conf.dir.temp + pkg.name + '-html.min.js',
+                conf.dir.temp + pkg.name + '-html' + suffix + '.js',
                 '!' + conf.dir.src + 'config*.js',
                 '!' + conf.dir.src + 'cordova*.js'
             ])
@@ -68,6 +76,14 @@ module.exports = function (gulp) {
 
         // finally, we return the stream, so gulp knows when this task is done.
         return bundledStream;
+    }
+
+    gulp.task('build-bundle-dev', ['build-html-dev'], function () {
+        buildBundle(false);
+    });
+
+    gulp.task('build-bundle-prod', ['build-html-prod'], function () {
+        buildBundle(true);
     });
   
 };

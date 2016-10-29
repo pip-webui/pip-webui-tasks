@@ -8,25 +8,25 @@ var conf = require('./config');
 
 module.exports = function (gulp) {
 
-    // gulp.task('build-html-dev', function () {
-    //     if (!conf.build.html) return;
+    gulp.task('build-html-dev', function () {
+        if (!conf.build.html) return;
 
-    //     return gulp.src([
-    //         conf.dir.src + '**/*.html',
-    //         '!' + conf.dir.src + 'index*.html'
-    //     ])
-    //     .pipe(sourcemaps.init({loadMaps: true}))
-    //     .pipe(ngHtml2Js({
-    //         moduleName: conf.module.name + '.Templates',
-    //         prefix: conf.module.prefix,
-    //         declareModule: true
-    //     }))
-    //     .pipe(concat(pkg.name + '-html.js'))
-    //     .pipe(sourcemaps.write('.'))
-    //     .pipe(gulp.dest(conf.dir.temp));
-    // });
+        return gulp.src([
+            conf.dir.src + '**/*.html',
+            '!' + conf.dir.src + 'index*.html'
+        ])
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(ngHtml2Js({
+            moduleName: conf.module.name + '.Templates',
+            prefix: conf.module.prefix,
+            declareModule: true
+        }))
+        .pipe(concat(pkg.name + '-html.js'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(conf.dir.temp));
+    });
 
-    gulp.task('build-html', function () {
+    gulp.task('build-html-prod', function () {
         if (!conf.build.html) return;
 
         return gulp.src([
