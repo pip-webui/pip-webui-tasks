@@ -10,8 +10,7 @@ module.exports = function (gulp) {
             .pipe(gulp.dest(conf.dir.lib));
     });
 
-    gulp.task('build-lib-dev', ['copy-lib']);
-    gulp.task('build-lib-prod', ['copy-lib']);
+    gulp.task('build-lib', ['copy-lib']);
 
     gulp.task('copy-images', function () {
         if (!conf.build.images) return;
@@ -29,8 +28,7 @@ module.exports = function (gulp) {
         ]).pipe(gulp.dest(conf.dir.dist));
     });
 
-    gulp.task('build-res-dev', ['copy-images', 'copy-index']);
-    gulp.task('build-res-prod', ['copy-images', 'copy-index']);
+    gulp.task('build-res', ['copy-images', 'copy-index']);
 
     gulp.task('copy-dist', function () {
         if (!conf.build.dist) return;

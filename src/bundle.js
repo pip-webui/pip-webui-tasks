@@ -15,7 +15,7 @@ var conf = require('./config');
 
 module.exports = function (gulp) {
 
-    gulp.task('build-bundle', ['build-html-prod'], function () {
+    gulp.task('build-bundle', ['build-html'], function () {
         if (!conf.build.bundle) return;
 
         if (conf.build.js)

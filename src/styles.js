@@ -9,16 +9,16 @@ var conf = require('./config');
 
 module.exports = function (gulp) {
 
-    gulp.task('build-less-dev', function () {
-        if (!conf.build.css && !conf.build.less) return;
+    // gulp.task('build-less-dev', function () {
+    //     if (!conf.build.css && !conf.build.less) return;
 
-        return gulp.src(conf.dir.src + conf.module.styles + '.less')
-            .pipe(less())
-            .pipe(concat(pkg.name + '.css'))
-            .pipe(gulp.dest(conf.dir.dist));
-    });
+    //     return gulp.src(conf.dir.src + conf.module.styles + '.less')
+    //         .pipe(less())
+    //         .pipe(concat(pkg.name + '.css'))
+    //         .pipe(gulp.dest(conf.dir.dist));
+    // });
 
-    gulp.task('build-less-prod', function () {
+    gulp.task('build-less', function () {
         if (!conf.build.css && !conf.build.less) return;
 
         return gulp.src(conf.dir.src +  conf.module.styles + '.less')

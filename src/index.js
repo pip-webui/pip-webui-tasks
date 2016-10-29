@@ -28,3 +28,8 @@ module.exports.api = api;
 module.exports.submodules = submodules;
 module.exports.all = all;
 
+function browser() {
+    return require('./browser');
+}
+
+module.exports.browser = browser;
