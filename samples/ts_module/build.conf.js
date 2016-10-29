@@ -1,13 +1,18 @@
 module.exports = {
     module: {
-        name: 'pipCore',
-        styles: 'core'
+        name: 'pipTranslate',
+        export: 'pip.translate',
+        styles: 'styles'
     },
     build: {
-        js: true,
-        ts: true,
-        html: false,
+        js: false,
+        ts: false,
+        tsd: true,
+        bundle: true,
+        html: true,
         css: false,
+        less: false,
+        sass: true,
         lib: true,
         images: false,
         dist: false

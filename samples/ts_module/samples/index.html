@@ -6,57 +6,28 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="-1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Core Services</title>
+    <title>Sample Module with TypeScript</title>
 
-    <link rel="stylesheet" href="../../lib/pip-webui-lib.css"/>
-    <link rel="stylesheet" href="styles.css"/>
-
-    <script src="../../lib/pip-webui-lib.js"></script>
-    <script src="../../dist/pip-webui-core-sample.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="../../dist/pip-webui-core-sample.min.js"></script>
 
     <script src="index.js"></script>
-    <script src="translate.js"></script>
 </head>
 
-<body class="layout-column" ng-app="appCoreServices" ng-controller="AppController">
-    <md-toolbar ng-if="!$partialReset">
-        <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="menu"
-                ng-click="onToggleMenu()" hide-gt-sm>
-                <md-icon md-svg-icon="icons:menu"></md-icon>
-            </md-button>
-            <span>Core Services - {{ 'APPLICATION_TITLE' | translate }}</span>
-            <md-menu md-position-mode="target-right target">
-                <span class="pip-appbar-language"
-                      ng-click="$mdOpenMenu()"
-                      aria-label="language selection">
-                    {{ $language | translate}}
-                    <md-icon md-svg-icon="icons:triangle-down"></md-icon>
-                </span>
-                <md-menu-content width="3">
-                    <md-menu-item ng-repeat="lang in languages">
-                        <md-button ng-click="onLanguageClick(lang)">{{lang | translate}}</md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-        </div>
-    </md-toolbar>
-
-    <div class="layout-row flex" ng-if="!$reset">
-        <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"
-                    class="md-whiteframe-z2 md-sidenav-left layout-column">
-            <md-list>
-                <md-list-item ng-repeat="contentItem in content"
-                    ng-click="onSwitchPage(contentItem.state)"
-                    ng-class="{ 'selected-state': isActiveState(contentItem.state) }">
-                    <p ui-sref="{{contentItem.state}}">{{contentItem.title}}</p>
-                </md-list-item>
-            </md-list>
-        </md-sidenav>
-
-        <md-content id="content" class="p16 flex">
-            <div ui-view></div>
-        </md-content>
+<body class="layout-column" ng-app="app" ng-controller="AppController">
+    <center>
+        <button ng-click="setLanguage('en')">English</button>
+        <button ng-click="setLanguage('ru')">Russian</button>
+    </center>
+    <div>
+        <span>{{ 'SCOPE1_TEXT' | translate }}</span>
+    </div>
+    <div>
+        <span pip-translate="SCOPE2_TEXT"></span>
+    </div>
+    <div>
+        <pip-translate-html key="SCOPE3_TEXT"/>
     </div>
 </body>
 </html>

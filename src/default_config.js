@@ -13,9 +13,13 @@ module.exports = {
         test: './test/',
         import: './node_modules/',
         lib: './lib/',
+        obj: './obj/',
+        objSrc: './obj/src',
+        objTest: './obj/test',
         dist: './dist/',
         samples: './samples/',
         cordova: './cordova/',
+        doc: './doc/',
         api: './doc/api/'
     },
 
@@ -36,6 +40,8 @@ module.exports = {
         ts: true,
         html: true,
         css: true,
+        less: false,
+        sass: false,
         lib: true,
         images: true,
         dist: true
@@ -46,6 +52,10 @@ module.exports = {
         declaration: true,
         removeComments: true,
         target: 'ES5'
+    },
+
+    browserify: {
+        debug: true
     },
 
     app: {

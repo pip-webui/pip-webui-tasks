@@ -1,5 +1,11 @@
 # Pip.WebUI.Tasks Changelog
 
+##1.8.0
+
+### Features
+* **build**: added support for bundling of javascript and typescript using browsify 
+* **sass**: added support for sass stylesheets
+
 ##1.7.0
 
 ### Features

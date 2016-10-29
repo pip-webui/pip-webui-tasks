@@ -1,6 +1,6 @@
 var eslint = require('gulp-eslint');
 var lesshint = require('gulp-lesshint');
-var Server = require('karma').Server;
+// var Server = require('karma').Server;
 
 var conf = require('./config');
 
@@ -19,15 +19,15 @@ module.exports = function (gulp) {
             .pipe(lesshint.reporter());
     });
 
-    gulp.task('test-karma', function (done) {
-        new Server({
-            configFile: process.cwd() + '/karma.conf.js',
-            singleRun: true
-        }, done).start();
-    });
+    // gulp.task('test-karma', function (done) {
+    //     new Server({
+    //         configFile: process.cwd() + '/karma.conf.js',
+    //         singleRun: true
+    //     }, done).start();
+    // });
 
     // Left for backward compatibility
-    gulp.task('test', ['test-karma']);
+    gulp.task('test'/*, ['test-karma']*/);
     gulp.task('es-lint', ['test-eshint']);
     gulp.task('less-lint', ['test-lesshint']);
 
