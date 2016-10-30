@@ -63,6 +63,8 @@ module.exports = function (gulp) {
                 browserifyOpts.debug = true;
                 if (browserifyOpts.entries == null)
                     browserifyOpts.entries = entries;
+                if (conf.module.standalone != null)
+                    browserifyOpts.standalone = conf.module.standalone;
 
                 var typescriptOpts = conf.typescript || {};
 

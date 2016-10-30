@@ -5,7 +5,8 @@ module.exports = {
         styles: 'styles',
         prefix: '',
         branch: 'master',
-        export: null
+        export: null,
+        standalone: null
     },
 
     dir: {

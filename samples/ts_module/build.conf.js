@@ -2,6 +2,7 @@ module.exports = {
     module: {
         name: 'pipTranslate',
         export: 'pip.translate',
+        standalone: 'pip.translate',
         styles: 'styles'
     },
     build: {
