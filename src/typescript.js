@@ -46,11 +46,12 @@ module.exports = function (gulp) {
                 .pipe(replace(/\/\/\/.*<reference.*>/gi, ''))
                 .pipe(replace(/import[^;]+[\'\"]\..*[\'\"];/gi, ''))
                 .pipe(replace(/export[^;]+[\'\"]\..*[\'\"];/gi, ''))
+                .pipe(replace(/declare /gi, ''))
                 .pipe(concat(pkg.name + '.d.ts'));
         
         if (conf.module.export) {
             file = file.pipe(insert.wrap(
-                'module ' + conf.module.export + ' {\n\r',
+                'declare module ' + conf.module.export + ' {\n\r',
                 '\n\r}\n\r'
             ));
         }

@@ -4,7 +4,8 @@ module.exports = {
         index: 'index',
         styles: 'styles',
         prefix: '',
-        branch: 'master'
+        branch: 'master',
+        export: null
     },
 
     dir: {
@@ -38,9 +39,11 @@ module.exports = {
     build: {
         js: true,
         ts: true,
+        tsd: false,
+        bundle: false,
         html: true,
-        css: true,
-        less: false,
+        css: false,
+        less: true,
         sass: false,
         lib: true,
         images: true,
@@ -55,7 +58,8 @@ module.exports = {
     },
 
     browserify: {
-        debug: true
+        debug: true,
+        entries: null
     },
 
     app: {
