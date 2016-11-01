@@ -1,6 +1,10 @@
+'use strict';
+
+angular.module('pipTranslate', []);
+
+import './TranslateService';
+import './TranslateDirective';
+import './TranslateFilter';
+
 export * from './ITranslateService';
 export * from './Translation'; 
-export * from './TranslateService'; 
-export * from './TranslateProvider'; 
-export * from './TranslateFilter'; 
-export * from './TranslateDirective'; 

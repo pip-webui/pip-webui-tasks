@@ -2,7 +2,7 @@
 
 import { ITranslateService } from './ITranslateService';
 
-export function translateFilter(pipTranslate: ITranslateService) {
+function translateFilter(pipTranslate: ITranslateService) {
     "ngInject";
 
     return function (key) {
@@ -10,7 +10,7 @@ export function translateFilter(pipTranslate: ITranslateService) {
     }
 }
 
-export function optionalTranslateFilter($injector) {
+function optionalTranslateFilter($injector) {
     "ngInject";
 
     let pipTranslate = $injector.has('pipTranslate') 
@@ -20,3 +20,6 @@ export function optionalTranslateFilter($injector) {
         return pipTranslate  ? pipTranslate.translate(key) || key : key;
     }
 }
+
+angular.module('pipTranslate')
+    .filter('translate', translateFilter);

@@ -2,7 +2,7 @@
 
 import { ITranslateService } from './ITranslateService';
 
-export function translateDirective(pipTranslate: ITranslateService): ng.IDirective {
+function translateDirective(pipTranslate: ITranslateService): ng.IDirective {
     "ngInject";
 
     return {
@@ -19,7 +19,7 @@ export function translateDirective(pipTranslate: ITranslateService): ng.IDirecti
     };
 }
 
-export function translateHtmlDirective(pipTranslate: ITranslateService): ng.IDirective {
+function translateHtmlDirective(pipTranslate: ITranslateService): ng.IDirective {
     "ngInject";
 
     return {
@@ -36,3 +36,6 @@ export function translateHtmlDirective(pipTranslate: ITranslateService): ng.IDir
     };
 }
 
+angular.module('pipTranslate')
+    .directive('pipTranslate', translateDirective)
+    .directive('pipTranslateHtml', translateHtmlDirective);

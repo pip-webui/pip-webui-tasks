@@ -24,6 +24,8 @@ module.exports = function (gulp) {
         return merge([
             tsResult.dts
                 .pipe(replace(/\/\/\/.*<reference.*>/gi, ''))
+                .pipe(replace(/^\s*[\r\n]/gm,''))
+                .pipe(replace(/^\s*[\r\n]/gm,''))
                 .pipe(concat(pkg.name + '.d.ts'))
                 .pipe(gulp.dest(conf.dir.dist)),
             tsResult.js
@@ -47,6 +49,8 @@ module.exports = function (gulp) {
                 .pipe(replace(/import[^;]+[\'\"]\..*[\'\"];/gi, ''))
                 .pipe(replace(/export[^;]+[\'\"]\..*[\'\"];/gi, ''))
                 .pipe(replace(/declare /gi, ''))
+                .pipe(replace(/^\s*[\r\n]/gm,''))
+                .pipe(replace(/^\s*[\r\n]/gm,''))
                 .pipe(concat(pkg.name + '.d.ts'));
         
         if (conf.module.export) {
