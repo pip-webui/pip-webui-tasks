@@ -45,4 +45,6 @@ module.exports = function (gulp) {
         .pipe(gulp.dest(conf.dir.temp));
     });
 
+    gulp.task('build-html', ['build-html-prod']);
+
 };

@@ -81,11 +81,11 @@ module.exports = function (gulp) {
         return bundledStream;
     }
 
-    gulp.task('build-bundle-dev', ['build-html-dev'], function () {
+    gulp.task('build-bundle-dev', ['build-html'], function () {
         buildBundle(false);
     });
 
-    gulp.task('build-bundle-prod', ['build-html-prod'], function () {
+    gulp.task('build-bundle-prod', ['build-html'], function () {
         buildBundle(true);
     });
   
