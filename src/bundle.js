@@ -52,9 +52,9 @@ module.exports = function (gulp) {
         // creates it's own readable stream.
         globby(
             [
+                conf.dir.temp + pkg.name + '-html' + suffix + '.js',
                 conf.dir.src + '**/*.js',
                 conf.dir.src + '**/*.ts',
-                conf.dir.temp + pkg.name + '-html' + suffix + '.js',
                 '!' + conf.dir.src + 'config*.js',
                 '!' + conf.dir.src + 'cordova*.js'
             ])
