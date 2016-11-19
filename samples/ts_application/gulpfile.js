@@ -9,6 +9,7 @@ gulp.task('clean', ['build-clean']);
 gulp.task('watch', ['build-watch']);
 gulp.task('jshint', ['test-jshint']);
 gulp.task('launch', ['app-launch']);
+gulp.task('publish', ['app-publish-alpha']);
 
 // Set default task
 gulp.task('default', ['build']);

@@ -8,7 +8,7 @@ var conf = require('./config');
 
 module.exports = function (gulp) {
         
-    gulp.task('app-publish-alpha', ['build-prod'], function () {
+    gulp.task('app-publish-alpha', function () {
         var
             storage = conf.app.publish.alpha,
 
@@ -28,7 +28,7 @@ module.exports = function (gulp) {
         return publish(storage, files);
     });
 
-    gulp.task('app-publish-beta', ['build-prod'], function () {
+    gulp.task('app-publish-beta', function () {
         var
             storage = conf.app.publish.beta,
 
@@ -52,7 +52,7 @@ module.exports = function (gulp) {
         return publish(storage, files);
     });
 
-    gulp.task('app-publish-prod', ['build-prod'], function () {
+    gulp.task('app-publish-prod', function () {
         var
             storage = conf.app.publish.prod,
 
