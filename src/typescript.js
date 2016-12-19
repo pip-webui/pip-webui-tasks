@@ -46,7 +46,7 @@ module.exports = function (gulp) {
             .pipe(ts(conf.typescript))
             .dts
                 .pipe(replace(/\/\/\/.*<reference.*>/gi, ''))
-                .pipe(replace(/import\s[^;]+[\'\"]\.\/*[\'\"];/gi, ''))
+                .pipe(replace(/import\s[^;]+[\'\"]*[\'\"];/gi, ''))
                 .pipe(replace(/export\s[^;]+[\'\"]\..*[\'\"];/gi, ''))
                 .pipe(replace(/declare /gi, ''))
                 .pipe(replace(/^\s*[\r\n]/gm,''))
