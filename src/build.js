@@ -85,7 +85,7 @@ module.exports = function (gulp) {
             conf.dir.temp + pkg.name + '-ts.js'
         ])
             .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
-            .pipe(addsrc(conf.dir.temp + pkg.name + '-html.js'))
+            .pipe(addsrc(conf.dir.temp + pkg.name + '-html.js', { allowEmpty: true }))
             .pipe(sourceMaps.init({loadMaps: true}))
             .pipe(concat(pkg.name + '.js'))
             .pipe(sourceMaps.write('.'))
@@ -100,7 +100,7 @@ module.exports = function (gulp) {
             conf.dir.temp + pkg.name + '-ts.js'
         ])
             .pipe(ngAnnotate({single_quotes: true, add: true, remove: true}))
-            .pipe(addsrc(conf.dir.temp + pkg.name + '-html.min.js'))
+            .pipe(addsrc(conf.dir.temp + pkg.name + '-html.min.js', { allowEmpty: true }))
             //.pipe(sourceMaps.init({ loadMaps: true }))
             .pipe(concat(pkg.name + '.min.js'))
             .pipe(minifyJs())
